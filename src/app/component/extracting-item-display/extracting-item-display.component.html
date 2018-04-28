@@ -1,0 +1,11 @@
+<div class="extracting-item-display">
+  <div class="extracting-item-ore">
+      <img src="{{categoryResource.icon}}" title="{{categoryResource.name}}" />
+  </div>
+  <div class="extractor-items">
+    <div *ngFor="let extractingItem of extractingItems" class="extractor-item">
+      <img src="{{extractingItem.craftingItem.icon}}" title="{{extractingItem.craftingItem.name}}" [ngClass]="{'can-build': extractingItem.craftingItem.canBuild()}"  />
+      <div class="total">{{extractingItem.qty}}</div>
+    </div>
+  </div>
+</div>

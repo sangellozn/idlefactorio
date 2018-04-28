@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Production</h1>
+  <div class="stock-info-container">
+    <app-stock-info-display *ngFor="let stockInfo of stockInfos" 
+      [resource]="stockInfo.resource"
+      [stock]="stockInfo.stock"
+      [consuming]="stockInfo.consuming"
+      [producing]="stockInfo.producing"></app-stock-info-display>
+  </div>
+</div>

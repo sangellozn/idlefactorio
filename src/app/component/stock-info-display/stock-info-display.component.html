@@ -1,0 +1,11 @@
+<div class="stock-info-card">
+  <div class="stock-info-card-data">
+    <img src="{{resource.icon}}" title="{{resource.name}}" [ngClass]="{'can-mine': resource.canBeMined}" (click)="mineResource()" />
+    <div *ngIf="resource.canBeMined" class="mining-pb">
+      <div class="mining-pb-progress" [ngStyle]="{'width':progressBarWidth + '%'}"></div>
+    </div>
+  </div>
+  <div>
+    <span class="total">{{stock}}</span> (<span class="producing">+{{producing}}</span> / <span class="consuming">-{{consuming}}</span>)
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Extraction</h1>
+  <div class="extracting-items">
+    <app-extracting-item-display *ngFor="let key of extractingItemsKeys" 
+      [category]="key"
+      [extractingItems]="extractingItems[key]"></app-extracting-item-display>
+  </div>
+</div>

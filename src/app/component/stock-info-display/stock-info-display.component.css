@@ -1,0 +1,47 @@
+.stock-info-card {
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    display: flex;
+    flex-direction: row
+}
+
+.stock-info-card-data {
+    flex-direction: column;
+}
+
+.stock-info-card-data img {
+    margin-right: 5px;
+}
+
+.mining-pb {
+    margin-top: 5px;
+    height: 10px;
+    border: 1px solid #a87723;
+}
+
+.mining-pb-progress {
+    background-color: #e69100;
+    width: 15%;
+    height: 9px;
+}
+
+span.consuming, span.producing, span.total {
+    font-weight: bold;
+}
+
+span.consuming {
+    color:firebrick;
+}
+
+span.producing {
+    color:olivedrab;
+}
+
+span.total {
+    color: white;
+}
+
+.can-mine {
+    cursor: pointer;
+}

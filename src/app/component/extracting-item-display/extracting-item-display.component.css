@@ -1,0 +1,27 @@
+.extracting-item-display {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.extracting-item-ore {
+    text-align: center;
+}
+
+.extractor-items {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.extractor-item {
+    text-align: center;
+}
+
+.total {
+    font-weight: bold;
+}
+
+.can-build {
+    cursor: pointer;
+}
