@@ -1,11 +1,12 @@
 <div class="extracting-item-display">
   <div class="extracting-item-ore">
-      <img src="{{categoryResource.icon}}" title="{{categoryResource.name}}" />
+      <img src="{{extractingInfo.resource.icon}}" title="{{extractingInfo.resource.name}}" />
   </div>
   <div class="extractor-items">
-    <div *ngFor="let extractingItem of extractingItems" class="extractor-item">
-      <img src="{{extractingItem.craftingItem.icon}}" title="{{extractingItem.craftingItem.name}}" [ngClass]="{'can-build': extractingItem.craftingItem.canBuild()}"  />
-      <div class="total">{{extractingItem.qty}}</div>
+    <div *ngFor="let productionQty of extractingInfo.productionQtys" class="extractor-item">
+      <img src="{{productionQty.craftingInfo.craftingItem.icon}}" title="{{productionQty.craftingInfo.craftingItem.name}}" 
+        [ngClass]="{'can-build': game.canBuildConsumption(extractingInfo.resource, productionQty.craftingInfo.craftingItem)}" (click)="build(productionQty)" />
+      <div class="total">{{productionQty.nb}}</div>
     </div>
   </div>
 </div>

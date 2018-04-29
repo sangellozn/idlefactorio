@@ -9,6 +9,7 @@ import { CraftingDisplayComponent } from './component/crafting-display/crafting-
 import { StockInfoDisplayComponent } from './component/stock-info-display/stock-info-display.component';
 import { ExtractingDisplayComponent } from './component/extracting-display/extracting-display.component';
 import { ExtractingItemDisplayComponent } from './component/extracting-item-display/extracting-item-display.component';
+import { FurnaceDisplayComponent } from './component/furnace-display/furnace-display.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ExtractingItemDisplayComponent } from './component/extracting-item-disp
     CraftingDisplayComponent,
     StockInfoDisplayComponent,
     ExtractingDisplayComponent,
-    ExtractingItemDisplayComponent
+    ExtractingItemDisplayComponent,
+    FurnaceDisplayComponent
   ],
   imports: [
     BrowserModule

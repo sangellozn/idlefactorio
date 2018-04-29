@@ -9,11 +9,27 @@ import { Game } from '../../bean/game';
 export class GameComponent implements OnInit {
 
   private game:Game;
+  private displayGameSavedAlert:boolean;
+  private hasLocalStorage:boolean;
 
-  constructor() { this.game = Game.getInstance() }
+  constructor() { 
+    this.game = Game.getInstance(); 
+    this.displayGameSavedAlert = false; 
+    this.hasLocalStorage = localStorage ? true : false;
+  }
 
   ngOnInit() {
     this.game.init();
+  }
+
+  saveGame() {
+    this.game.save();
+    this.displayGameSavedAlert = true;
+    window.setTimeout(() => {this.displayGameSavedAlert = false}, 3000);
+  }
+
+  resetGame() {
+    this.game.resetGame();
   }
 
 }

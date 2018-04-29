@@ -18,8 +18,11 @@ export class StockInfoDisplayComponent implements OnInit {
   private progressBarId:number;
   private progressBarWidth:number;
   private progressBarStep:number;
+  private game:Game;
 
-  constructor() {  }
+  constructor() { 
+    this.game = Game.getInstance();
+  }
 
   ngOnInit() { 
     this.initProgressBarInfo();
@@ -32,12 +35,12 @@ export class StockInfoDisplayComponent implements OnInit {
   }
 
   mineResource() {
-    if (this.resource.canBeMined && !this.mineId && !this.progressBarId) {
+    if (this.game.canBuild(this.resource) && this.resource.handCrafted && !this.mineId && !this.progressBarId) {
       this.displayProgressBar();
       this.mineId = window.setTimeout(() => {
-        Game.getInstance().increaseStock(this.resource, 1);
+        this.game.craftResourceItem(this.resource);
         this.mineId = undefined;
-      }, this.resource.mineDuration * 1000);
+      }, this.resource.craftDuration * 1000);
     }
   }
 
@@ -50,7 +53,7 @@ export class StockInfoDisplayComponent implements OnInit {
         this.progressBarStep++;
         this.progressBarWidth = (this.progressBarStep) * 10;
       }
-    }, this.resource.mineDuration * 100);
+    }, this.resource.craftDuration * 100);
   }
 
 }

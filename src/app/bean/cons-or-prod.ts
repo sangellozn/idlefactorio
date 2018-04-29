@@ -11,9 +11,9 @@ export class ConsOrProd {
      */
     public consumme:boolean;
     public qty:number;
-    public resources:ResourceItem[];
+    public resources:ResourceItem;
 
-    constructor(consumme:boolean, qty: number, resources:ResourceItem[]) {
+    constructor(consumme:boolean, qty: number, resources:ResourceItem) {
         this.consumme = consumme;
         this.qty = qty;
         this.resources = resources;

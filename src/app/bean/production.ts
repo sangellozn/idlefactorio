@@ -3,7 +3,7 @@ import { ResourceItem } from "./resource-item";
 
 export class Production extends ConsOrProd {
 
-    constructor(qty:number, resources:ResourceItem[]) {
+    constructor(qty:number, resources:ResourceItem) {
         super(false, qty, resources);
     }
 

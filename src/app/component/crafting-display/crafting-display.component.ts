@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductionInfo } from '../../bean/production-info';
+import { Game } from '../../bean/game';
 
 @Component({
   selector: 'app-crafting-display',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CraftingDisplayComponent implements OnInit {
 
+  private craftingItems:ProductionInfo[];
+
   constructor() { }
 
   ngOnInit() {
+    this.craftingItems = Game.getInstance().getCraftingItems();
   }
 
 }

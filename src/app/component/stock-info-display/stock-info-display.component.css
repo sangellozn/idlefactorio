@@ -3,7 +3,8 @@
     margin-left: 2px;
     margin-right: 2px;
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    width: 150px;
 }
 
 .stock-info-card-data {

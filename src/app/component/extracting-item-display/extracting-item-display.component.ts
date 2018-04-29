@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ResourceItem } from '../../bean/resource-item';
-import { ResourceData } from '../../bean/resource-data';
+import { GameData } from '../../bean/game-data';
 import { CraftingItem } from '../../bean/crafting-item';
+import { ProductionInfo, ProductionQty } from '../../bean/production-info';
+import { Game } from '../../bean/game';
 
 @Component({
   selector: 'app-extracting-item-display',
@@ -10,14 +12,19 @@ import { CraftingItem } from '../../bean/crafting-item';
 })
 export class ExtractingItemDisplayComponent implements OnInit {
 
-  @Input() private category:string;
-  @Input() private extractingItems:object[];
-  private categoryResource:ResourceItem;
+  @Input() private extractingInfo:ProductionInfo;
+  private game:Game;
 
-  constructor() { }
+  constructor() {
+    this.game = Game.getInstance();
+  }
 
-  ngOnInit() {
-    this.categoryResource = ResourceData.resourcesByCode.get(this.category);
+  ngOnInit() { }
+
+  build(productionQty:ProductionQty) {
+    if (this.game.canBuildConsumption(this.extractingInfo.resource, productionQty.craftingInfo.craftingItem)) {
+      this.game.craftCraftingItem(this.extractingInfo.resource, productionQty.craftingInfo.craftingItem);
+    }
   }
 
 }
