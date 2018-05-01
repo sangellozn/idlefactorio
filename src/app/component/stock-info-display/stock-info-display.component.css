@@ -1,14 +1,16 @@
 .stock-info-card {
     padding: 5px;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin: 2px;
     display: flex;
     flex-direction: row;
-    width: 150px;
+    width: 220px;
+    background-color: #444;
+    justify-content: space-around;
 }
 
 .stock-info-card-data {
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .stock-info-card-data img {
@@ -32,11 +34,11 @@ span.consuming, span.producing, span.total {
 }
 
 span.consuming {
-    color:firebrick;
+    color: red;
 }
 
 span.producing {
-    color:olivedrab;
+    color:limegreen;
 }
 
 span.total {
@@ -45,4 +47,32 @@ span.total {
 
 .can-mine {
     cursor: pointer;
+}
+
+.recipe .ingredient .qty {
+    font-weight: bold;
+}
+
+.recipe .ingredient .not-enougth {
+    color: red;
+    opacity: 0.85;
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    text-align: center;
+}
+
+.counter .production {
+    font-size: 12px;
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color:#fefefe;
 }

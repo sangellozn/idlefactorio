@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     padding: 5px;
+    background-color: #444;
+    margin: 2px;
 }
 
 .extracting-item-ore {
@@ -24,4 +26,29 @@
 
 .can-build {
     cursor: pointer;
+}
+
+.recipe .ingredient {
+    margin-bottom: 3px;
+}
+
+.recipe .ingredient .qty {
+    font-weight: bold;
+}
+
+.recipe .ingredient .not-enougth {
+    color: red;
+    opacity: 0.85;
+}
+
+h6 {
+    margin-top: 2px;
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color:#fefefe;
 }

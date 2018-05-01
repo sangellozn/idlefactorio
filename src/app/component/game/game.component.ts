@@ -29,7 +29,9 @@ export class GameComponent implements OnInit {
   }
 
   resetGame() {
-    this.game.resetGame();
+    if (confirm('Warning: Your progression will be erased ! Are you sure ?')) {
+      this.game.resetGame();
+    }
   }
 
 }

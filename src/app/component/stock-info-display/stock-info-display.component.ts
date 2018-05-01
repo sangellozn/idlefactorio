@@ -37,8 +37,9 @@ export class StockInfoDisplayComponent implements OnInit {
   mineResource() {
     if (this.game.canBuild(this.resource) && this.resource.handCrafted && !this.mineId && !this.progressBarId) {
       this.displayProgressBar();
+      this.game.craftResourceItem(this.resource);
       this.mineId = window.setTimeout(() => {
-        this.game.craftResourceItem(this.resource);
+        this.game.pickupResourceItem(this.resource);
         this.mineId = undefined;
       }, this.resource.craftDuration * 1000);
     }

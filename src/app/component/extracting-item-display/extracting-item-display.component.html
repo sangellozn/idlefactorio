@@ -1,12 +1,40 @@
 <div class="extracting-item-display">
   <div class="extracting-item-ore">
-      <img src="{{extractingInfo.resource.icon}}" title="{{extractingInfo.resource.name}}" />
+      <img src="{{extractingInfo.resource.icon}}" title="{{extractingInfo.resource.name}}" height="32" width="32" />
   </div>
   <div class="extractor-items">
     <div *ngFor="let productionQty of extractingInfo.productionQtys" class="extractor-item">
-      <img src="{{productionQty.craftingInfo.craftingItem.icon}}" title="{{productionQty.craftingInfo.craftingItem.name}}" 
-        [ngClass]="{'can-build': game.canBuildConsumption(extractingInfo.resource, productionQty.craftingInfo.craftingItem)}" (click)="build(productionQty)" />
-      <div class="total">{{productionQty.nb}}</div>
+      <ng-template #recipe>
+        <div class="recipe">
+          <h6>Produce</h6>
+          <div class="ingredient" *ngFor="let prodValue of productionQty.recipe.produces" >
+            <span class="qty">{{prodValue.produces}}</span>
+            <span class="resource"><img src="{{prodValue.resourceItem.icon}}" title="{{prodValue.resourceItem.name}}" height="32" width="32" /></span>
+          </div>
+          <div class="separator"></div>
+          <h6>Build cost</h6>
+          <div class="ingredient" *ngFor="let buildCost of productionQty.recipe.craftingItem.buildCost">
+            <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(buildCost.resource, buildCost.qty)}">{{buildCost.qty}}</span>
+            <span class="resource"><img src="{{buildCost.resource.icon}}" title="{{buildCost.resource.name}}" height="32" width="32" /></span>
+          </div>
+          <div class="separator"></div>
+          <h6>Consumption</h6>
+          <div class="ingredient" *ngFor="let cons of getConsummeUnion(productionQty)">
+            <span class="qty" [ngClass]="{'not-enougth': 
+              (extractingInfo.resource.code !== 'COAL' || extractingInfo.resource.code === 'COAL' && cons.resource.code === 'ELEC')
+              && !game.canConsume(cons.resource, cons.qty)}">{{cons.qty}}</span>
+            <span class="resource"><img src="{{cons.resource.icon}}" title="{{cons.resource.name}}" height="32" width="32" /></span>
+          </div>
+          <div class="ingredient" *ngIf="getConsummeUnion(productionQty).length === 0"><span class="qty">N/A</span></div>
+        </div>
+      </ng-template>
+      <img src="{{productionQty.recipe.craftingItem.icon}}" title="{{productionQty.recipe.craftingItem.name}}" 
+        [ngClass]="{'can-build': game.canBuildConsumption(extractingInfo.resource, productionQty.recipe.craftingItem)}" 
+        [ngbTooltip]="recipe"
+        placement="left"
+        (click)="build(productionQty)"
+        (contextmenu)="destruct(productionQty)" />
+      <div class="total">{{productionQty.nbBuild}}</div>
     </div>
   </div>
 </div>

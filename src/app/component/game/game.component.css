@@ -2,3 +2,17 @@
     padding: 10px;
     text-align: center;
 }
+
+.extract-elec {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.extract-elec > div {
+    width: 49%;
+}
+
+.crafting-area {
+    min-height: 500px;
+}

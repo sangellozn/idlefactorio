@@ -1,23 +1,28 @@
 import { ResourceItem } from "./resource-item";
-import { CraftingInfo } from "./crafting-info";
+import { Recipe } from "./recipe";
 
 export class ProductionQty {
 
-    /** Resource of item corresponding to the crafter. */
-    public nb:number;
-    public craftingInfo:CraftingInfo;
+    /** Number of the crafter recipe the player built. */
+    public nbBuild:number;
+    /** The recipe */
+    public recipe:Recipe;
 
-    public constructor(nb:number, craftingInfo:CraftingInfo) {
-        this.nb = nb;
-        this.craftingInfo = craftingInfo;
+    public constructor(nbBuild:number, recipe:Recipe) {
+        this.nbBuild = nbBuild;
+        this.recipe = recipe;
     }
 
     public increment():void {
-        this.nb++;
+        this.nbBuild++;
     }
 
+    public decrement():void {
+        this.nbBuild--;
+    }
 }
 
+/** Upper class for production information, contains for a resource, the actual number of crafter build for each recipe. */
 export class ProductionInfo {
 
     public resource:ResourceItem;

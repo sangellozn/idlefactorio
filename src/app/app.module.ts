@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { StockInfoDisplayComponent } from './component/stock-info-display/stock-
 import { ExtractingDisplayComponent } from './component/extracting-display/extracting-display.component';
 import { ExtractingItemDisplayComponent } from './component/extracting-item-display/extracting-item-display.component';
 import { FurnaceDisplayComponent } from './component/furnace-display/furnace-display.component';
+import { ElectricityDisplayComponent } from './component/electricity-display/electricity-display.component';
 
 
 @NgModule({
@@ -21,10 +23,12 @@ import { FurnaceDisplayComponent } from './component/furnace-display/furnace-dis
     StockInfoDisplayComponent,
     ExtractingDisplayComponent,
     ExtractingItemDisplayComponent,
-    FurnaceDisplayComponent
+    FurnaceDisplayComponent,
+    ElectricityDisplayComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

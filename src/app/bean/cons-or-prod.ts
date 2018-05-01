@@ -11,12 +11,12 @@ export class ConsOrProd {
      */
     public consumme:boolean;
     public qty:number;
-    public resources:ResourceItem;
+    public resource:ResourceItem;
 
-    constructor(consumme:boolean, qty: number, resources:ResourceItem) {
+    constructor(consumme:boolean, qty: number, resource:ResourceItem) {
         this.consumme = consumme;
         this.qty = qty;
-        this.resources = resources;
+        this.resource = resource;
     }
 
 }

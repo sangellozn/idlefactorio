@@ -1,6 +1,8 @@
 <div class="menu">
-  <a href="javascript:void(0)" (click)="saveGame()">Save game</a>
-  <a href="javascript:void(0)" (click)="resetGame()">Reset game</a>
+  <a href="javascript:void(0)" (click)="saveGame()">Save game</a>&nbsp;-&nbsp;
+  <a href="javascript:void(0)" (click)="resetGame()">Reset game</a>&nbsp;-&nbsp;
+  <a href="javascript:void(0)">Help</a>&nbsp;-&nbsp;
+  <a href="javascript:void(0)">Credits</a>
 </div>
 <div class="game-alert">
   <div class="alert alert-success" *ngIf="displayGameSavedAlert">Game has been saved !</div>
@@ -9,12 +11,17 @@
 <div>
   <app-production-display></app-production-display>
 </div>
-<div>
-  <app-extracting-display></app-extracting-display>
+<div class="extract-elec">
+  <div>
+    <app-extracting-display></app-extracting-display>
+  </div>
+  <div>
+    <app-electricity-display></app-electricity-display>
+  </div>
 </div>
 <div>
   <app-furnace-display></app-furnace-display>
 </div>
-<div>
+<div class="crafting-area">
   <app-crafting-display></app-crafting-display>
 </div>

@@ -18,13 +18,18 @@ export class Save {
             return acc;
         }, {});
 
-        this.productionInfos = game.getCraftingItems().concat(game.getExtractingItems()).concat(game.getSmeltingItems()).reduce((acc, productionInfos) => {
-            acc[productionInfos.resource.code] = [];
-            productionInfos.productionQtys.map((pqty) => {
-                acc[productionInfos.resource.code].push({code: pqty.craftingInfo.craftingItem.code, nb: pqty.nb});
-            });
-            return acc;
-        }, {});
+        this.productionInfos = [game.getElectricityItem()]
+            .concat(game.getCraftingItems())
+            .concat(game.getExtractingItems())
+            .concat(game.getSmeltingItems())
+            .reduce((acc, productionInfos) => {
+                acc[productionInfos.resource.code] = [];
+                productionInfos.productionQtys.map((pqty) => {
+                    acc[productionInfos.resource.code].push({code: pqty.recipe.craftingItem.code, nbBuild: pqty.nbBuild});
+                });
+                return acc;
+            }, {}
+        );
 
         this.createdAt = new Date();
     }

@@ -15,10 +15,6 @@ export class ProductionDisplayComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    /*new Observable<StockInfo[]>((observer) => {
-      let intervalId = window.setInterval(() => observer.next(Game.getInstance().getStockInfos()), Game.roundDuration);
-      return {unsubscribe: () => { window.clearInterval(intervalId)}};
-    }).subscribe(data => this.stockInfos = data);*/
     this.stockInfos = Game.getInstance().getStockInfos();
   }
 
