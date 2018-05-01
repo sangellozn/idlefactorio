@@ -29,6 +29,7 @@ export class GameData {
             new ResourceItem('IRONO','Iron Ore', 'assets/icons/resources/iron-ore.png', true, [], 1.25, [], [], ["MINABLE", 'STOCKABLE']),
             new ResourceItem('COPO', 'Copper Ore', 'assets/icons/resources/copper-ore.png', true, [], 1.25, [], [], ["MINABLE", 'STOCKABLE']),
             new ResourceItem('STO', 'Stone', 'assets/icons/resources/stone.png', true, [], 1, [], [], ["MINABLE", 'STOCKABLE']),
+            new ResourceItem('CONC', 'Concrete', 'assets/icons/concrete.png', false, [], 1, [], [], ["CRAFTABLE", 'STOCKABLE']),
             new ResourceItem('STOFUR', 'Stone furnace', 'assets/icons/stone-furnace.png', true, [], 0.5, [], [], ["CRAFTABLE", 'STOCKABLE']),
             new ResourceItem('IROPL', 'Iron plate', 'assets/icons/iron-plate.png', true, [], 3.5, [], [], ["SMELTABLE", 'STOCKABLE']),
             new ResourceItem('COPPL', 'Copper plate', 'assets/icons/copper-plate.png', true, [], 3.5, [], [], ["SMELTABLE", 'STOCKABLE']),
@@ -38,6 +39,9 @@ export class GameData {
             new ResourceItem('CC', 'Copper cable', 'assets/icons/copper-cable.png', true, [], 0.25, [], [], ["CRAFTABLE", 'STOCKABLE']),
             new ResourceItem('EC', 'Electronic circuit', 'assets/icons/electronic-circuit.png', true, [], 0.5, [], [], ["CRAFTABLE", 'STOCKABLE']),
             new ResourceItem('PIPE', 'Pipe', 'assets/icons/pipe.png', true, [], 0.5, [], [], ["CRAFTABLE", 'STOCKABLE']),
+            new ResourceItem('ENGU', 'Engine unit', 'assets/icons/engine-unit.png', false, [], 0, [], [], ["CRAFTABLE", 'STOCKABLE']),
+            new ResourceItem('EENGU', 'Electric engine unit', 'assets/icons/electric-engine-unit.png', false, [], 0, [], [], ["CRAFTABLE", 'STOCKABLE']),
+            new ResourceItem('RADAR', 'Radar', 'assets/icons/radar.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM1', 'Assembling machine 1', 'assets/icons/assembling-machine-1.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM2', 'Assembling machine 2', 'assets/icons/assembling-machine-2.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM3', 'Assembling machine 3', 'assets/icons/assembling-machine-3.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
@@ -60,10 +64,18 @@ export class GameData {
             new ResourceItem('LUB', 'Lubricant', 'assets/icons/lubricant.png', false, [], 0, [], [], ['SMELTABLE', 'STOCKABLE']),
             new ResourceItem('SULF', 'Sulfur', 'assets/icons/sulfur.png', false, [], 0, [], [], ['SMELTABLE', 'STOCKABLE']),
             new ResourceItem('SULFAC', 'Sulfuric acid', 'assets/icons/sulfuric-acid.png', false, [], 0, [], [], ['SMELTABLE', 'STOCKABLE']),
+            new ResourceItem('BAT', 'Battery', 'assets/icons/battery.png', false, [], 0, [], [], ['SMELTABLE', 'STOCKABLE']),
+            new ResourceItem('ACCU', 'Accumulator', 'assets/icons/accumulator.png', true, [], 10, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('PLASBAR', 'Plastic bar', 'assets/icons/plastic-bar.png', true, [], 1, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('SOLFUEL', 'Solid fuel', 'assets/icons/solid-fuel.png', false, [], 0, [], [], ['STOCKABLE']),
             new ResourceItem('ROCFUEL', 'Rocket fuel', 'assets/icons/rocket-fuel.png', true, [], 30, [], [], ['CRAFTABLE', 'STOCKABLE']),
-        ];
+            new ResourceItem('LDS', 'Low density structure', 'assets/icons/rocket-structure.png', true, [], 30, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('PU', 'Processing unit', 'assets/icons/processing-unit.png', false, [], 0, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('RCU', 'Rocket control unit', 'assets/icons/rocket-control-unit.png', true, [], 30, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('RP', 'Rocket part', 'assets/icons/rocket-part.png', true, [], 3, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('SAT', 'Satellite', 'assets/icons/satellite.png', true, [], 5, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            //new ResourceItem('RS', 'Rocket silo', 'assets/icons/rocket-silo.png', false, [], 0, [], [], ['CRAFTABLE', 'STOCKABLE']),
+        ];  
 
         GameData.resourcesByCode =  new Map(GameData.resources.map((resource) : [string, ResourceItem] => [resource.code, resource]));
     }
@@ -152,6 +164,37 @@ export class GameData {
                 new Consumption(2.5, GameData.resourcesByCode.get('COPPL'))
             ])
         ];
+        GameData.resourcesByCode.get('ENGU').craftedWith = [
+            new Recipe([new ProductionValue(0.05, GameData.resourcesByCode.get('ENGU'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(0.05, GameData.resourcesByCode.get('IGW')),
+                new Consumption(0.1, GameData.resourcesByCode.get('PIPE')),
+                new Consumption(0.05, GameData.resourcesByCode.get('STEPL'))
+            ]), 
+            new Recipe([new ProductionValue(0.075, GameData.resourcesByCode.get('ENGU'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.075, GameData.resourcesByCode.get('IGW')),
+                new Consumption(0.15, GameData.resourcesByCode.get('PIPE')),
+                new Consumption(0.075, GameData.resourcesByCode.get('STEPL'))
+            ]), 
+            new Recipe([new ProductionValue(0.125, GameData.resourcesByCode.get('ENGU'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.125, GameData.resourcesByCode.get('IGW')),
+                new Consumption(0.25, GameData.resourcesByCode.get('PIPE')),
+                new Consumption(0.125, GameData.resourcesByCode.get('STEPL'))
+            ])
+        ];
+        GameData.resourcesByCode.get('ACCU').craftedWith = [
+            new Recipe([new ProductionValue(0.05, GameData.resourcesByCode.get('ACCU'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(0.25, GameData.resourcesByCode.get('BAT')),
+                new Consumption(0.1, GameData.resourcesByCode.get('IROPL'))
+            ]), 
+            new Recipe([new ProductionValue(0.075, GameData.resourcesByCode.get('ACCU'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.375, GameData.resourcesByCode.get('BAT')),
+                new Consumption(0.15, GameData.resourcesByCode.get('IROPL'))
+            ]), 
+            new Recipe([new ProductionValue(0.125, GameData.resourcesByCode.get('ACCU'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.625, GameData.resourcesByCode.get('BAT')),
+                new Consumption(0.25, GameData.resourcesByCode.get('IROPL'))
+            ])
+        ];
         GameData.resourcesByCode.get('EC').craftedWith = [
             new Recipe([new ProductionValue(1, GameData.resourcesByCode.get('EC'))], GameData.craftingsByCode.get('ASSM1')
                 , [new Consumption(3, GameData.resourcesByCode.get('CC')), new Consumption(1, GameData.resourcesByCode.get('IROPL'))]), 
@@ -231,6 +274,13 @@ export class GameData {
                     new ProductionValue(2, GameData.resourcesByCode.get('PLASBAR'))
                 ], GameData.craftingsByCode.get('CHEMPLANT'), [new Consumption(1, GameData.resourcesByCode.get('COAL')), new Consumption(20, GameData.resourcesByCode.get('PGAS'))])
         ];
+        GameData.resourcesByCode.get('BAT').craftedWith = [
+            new Recipe([
+                    new ProductionValue(0.2, GameData.resourcesByCode.get('BAT'))
+                ], GameData.craftingsByCode.get('CHEMPLANT'), [new Consumption(0.2, GameData.resourcesByCode.get('COPPL')), 
+                    new Consumption(0.2, GameData.resourcesByCode.get('IROPL')),
+                    new Consumption(4, GameData.resourcesByCode.get('SULFAC'))])
+        ];
         GameData.resourcesByCode.get('ADVC').craftedWith = [
             new Recipe([new ProductionValue(0.125, GameData.resourcesByCode.get('ADVC'))], GameData.craftingsByCode.get('ASSM2'), [
                 new Consumption(0.5, GameData.resourcesByCode.get('CC')),
@@ -241,6 +291,42 @@ export class GameData {
                 new Consumption(0.85, GameData.resourcesByCode.get('CC')),
                 new Consumption(0.425, GameData.resourcesByCode.get('EC')),
                 new Consumption(0.425, GameData.resourcesByCode.get('PLASBAR'))
+            ])
+        ];
+        GameData.resourcesByCode.get('CONC').craftedWith = [
+            new Recipe([new ProductionValue(0.75, GameData.resourcesByCode.get('CONC'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.075, GameData.resourcesByCode.get('IRONO')),
+                new Consumption(0.375, GameData.resourcesByCode.get('STOBR')),
+                new Consumption(7.5, GameData.resourcesByCode.get('WATER'))
+            ]), 
+            new Recipe([new ProductionValue(1.25, GameData.resourcesByCode.get('CONC'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.125, GameData.resourcesByCode.get('IRONO')),
+                new Consumption(0.625, GameData.resourcesByCode.get('STOBR')),
+                new Consumption(12.5, GameData.resourcesByCode.get('WATER'))
+            ])
+        ];
+        GameData.resourcesByCode.get('EENGU').craftedWith = [
+            new Recipe([new ProductionValue(0.075, GameData.resourcesByCode.get('EENGU'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.15, GameData.resourcesByCode.get('EC')),
+                new Consumption(0.075, GameData.resourcesByCode.get('ENGU')),
+                new Consumption(1.125, GameData.resourcesByCode.get('LUB'))
+            ]), 
+            new Recipe([new ProductionValue(0.125, GameData.resourcesByCode.get('EENGU'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.25, GameData.resourcesByCode.get('EC')),
+                new Consumption(0.125, GameData.resourcesByCode.get('ENGU')),
+                new Consumption(1.875, GameData.resourcesByCode.get('LUB'))
+            ])
+        ];
+        GameData.resourcesByCode.get('PU').craftedWith = [
+            new Recipe([new ProductionValue(0.075, GameData.resourcesByCode.get('PU'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.15, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(1.5, GameData.resourcesByCode.get('EC')),
+                new Consumption(0.375, GameData.resourcesByCode.get('SULFAC'))
+            ]), 
+            new Recipe([new ProductionValue(0.125, GameData.resourcesByCode.get('PU'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.25, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(2.5, GameData.resourcesByCode.get('EC')),
+                new Consumption(0.625, GameData.resourcesByCode.get('SULFAC'))
             ])
         ];
         GameData.resourcesByCode.get('ASSM1').craftedWith = [
@@ -295,6 +381,23 @@ export class GameData {
                 new Consumption(0.625, GameData.resourcesByCode.get('STEPL'))
             ])
         ];
+        GameData.resourcesByCode.get('RADAR').craftedWith = [
+            new Recipe([new ProductionValue(1, GameData.resourcesByCode.get('RADAR'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(5, GameData.resourcesByCode.get('EC')),
+                new Consumption(5, GameData.resourcesByCode.get('IGW')),
+                new Consumption(10, GameData.resourcesByCode.get('IROPL'))
+            ]),
+            new Recipe([new ProductionValue(1.5, GameData.resourcesByCode.get('RADAR'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(7.5, GameData.resourcesByCode.get('EC')),
+                new Consumption(7.5, GameData.resourcesByCode.get('IGW')),
+                new Consumption(15, GameData.resourcesByCode.get('IROPL'))
+            ]), 
+            new Recipe([new ProductionValue(2.5, GameData.resourcesByCode.get('RADAR'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(12.5, GameData.resourcesByCode.get('EC')),
+                new Consumption(12.5, GameData.resourcesByCode.get('IGW')),
+                new Consumption(25, GameData.resourcesByCode.get('IROPL'))
+            ])
+        ];
         GameData.resourcesByCode.get('SM1').craftedWith = [
             new Recipe([new ProductionValue(0.035, GameData.resourcesByCode.get('SM1'))], GameData.craftingsByCode.get('ASSM1'), [
                 new Consumption(0.165, GameData.resourcesByCode.get('ADVC')),
@@ -309,7 +412,20 @@ export class GameData {
                 new Consumption(0.415, GameData.resourcesByCode.get('EC'))
             ])
         ];
-
+        GameData.resourcesByCode.get('RCU').craftedWith = [
+            new Recipe([new ProductionValue(0.0165, GameData.resourcesByCode.get('RCU'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(0.0165, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.0165, GameData.resourcesByCode.get('SM1'))
+            ]), 
+            new Recipe([new ProductionValue(0.025, GameData.resourcesByCode.get('RCU'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.025, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.02525, GameData.resourcesByCode.get('SM1'))
+            ]),
+            new Recipe([new ProductionValue(0.0415, GameData.resourcesByCode.get('RCU'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.0415, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.0415, GameData.resourcesByCode.get('SM1'))
+            ])
+        ];
         GameData.resourcesByCode.get('SOLFUHO').craftedWith = [
             new Recipe([
                     new ProductionValue(0.35, GameData.resourcesByCode.get('SOLFUEL'))
@@ -336,6 +452,41 @@ export class GameData {
                 new Consumption(0.415, GameData.resourcesByCode.get('SOLFUEL'))
             ])
         ];
+        GameData.resourcesByCode.get('LDS').craftedWith = [
+            new Recipe([new ProductionValue(0.0165, GameData.resourcesByCode.get('LDS'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(0.0835, GameData.resourcesByCode.get('COPPL')),
+                new Consumption(0.0835, GameData.resourcesByCode.get('PLASBAR')),
+                new Consumption(0.165, GameData.resourcesByCode.get('STEPL'))
+            ]), 
+            new Recipe([new ProductionValue(0.025, GameData.resourcesByCode.get('LDS'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.125, GameData.resourcesByCode.get('COPPL')),
+                new Consumption(0.125, GameData.resourcesByCode.get('PLASBAR')),
+                new Consumption(0.25, GameData.resourcesByCode.get('STEPL'))
+            ]),
+            new Recipe([new ProductionValue(0.0415, GameData.resourcesByCode.get('LDS'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.208, GameData.resourcesByCode.get('COPPL')),
+                new Consumption(0.208, GameData.resourcesByCode.get('PLASBAR')),
+                new Consumption(0.416, GameData.resourcesByCode.get('STEPL'))
+            ])
+        ];
+        GameData.resourcesByCode.get('SAT').craftedWith = [
+            new Recipe([new ProductionValue(0.25, GameData.resourcesByCode.get('SAT'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(25, GameData.resourcesByCode.get('ACCU')),
+                new Consumption(25, GameData.resourcesByCode.get('LDS')),
+                new Consumption(25, GameData.resourcesByCode.get('PU')),
+                new Consumption(1.25, GameData.resourcesByCode.get('RADAR')),
+                new Consumption(12.5, GameData.resourcesByCode.get('ROCFUEL')),
+                new Consumption(25, GameData.resourcesByCode.get('SOLPAN'))
+            ])
+        ];
+        GameData.resourcesByCode.get('RP').craftedWith = [
+            new Recipe([new ProductionValue(0.35, GameData.resourcesByCode.get('RP'))], GameData.craftingsByCode.get('RS'), [
+                new Consumption(3.35, GameData.resourcesByCode.get('LDS')),
+                new Consumption(3.35, GameData.resourcesByCode.get('RCU')),
+                new Consumption(3.35, GameData.resourcesByCode.get('ROCFUEL'))
+            ])
+        ];
+        
 
         // Building costs.
         GameData.resourcesByCode.get('IROPL').buildCost = [new BuildCost(GameData.resourcesByCode.get('IRONO'), 1)];
@@ -363,6 +514,22 @@ export class GameData {
         GameData.resourcesByCode.get('SM1').buildCost = [new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
             new BuildCost(GameData.resourcesByCode.get('EC'), 5)];
         GameData.resourcesByCode.get('ROCFUEL').buildCost = [new BuildCost(GameData.resourcesByCode.get('SOLFUEL'), 10)];
+        GameData.resourcesByCode.get('ENGU').buildCost = [new BuildCost(GameData.resourcesByCode.get('IGW'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('PIPE'), 2), new BuildCost(GameData.resourcesByCode.get('STEPL'), 1)];
+        GameData.resourcesByCode.get('RADAR').buildCost = [new BuildCost(GameData.resourcesByCode.get('EC'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 5), new BuildCost(GameData.resourcesByCode.get('IROPL'), 10)];
+        GameData.resourcesByCode.get('ACCU').buildCost = [new BuildCost(GameData.resourcesByCode.get('BAT'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('IROPL'), 2)];
+        GameData.resourcesByCode.get('LDS').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('PLASBAR'), 5), new BuildCost(GameData.resourcesByCode.get('STEPL'), 10)];
+        GameData.resourcesByCode.get('SAT').buildCost = [new BuildCost(GameData.resourcesByCode.get('ACCU'), 100), 
+            new BuildCost(GameData.resourcesByCode.get('LDS'), 100), new BuildCost(GameData.resourcesByCode.get('PU'), 100),
+            new BuildCost(GameData.resourcesByCode.get('RADAR'), 5), new BuildCost(GameData.resourcesByCode.get('ROCFUEL'), 50),
+            new BuildCost(GameData.resourcesByCode.get('SOLPAN'), 100)];
+        GameData.resourcesByCode.get('RCU').buildCost = [new BuildCost(GameData.resourcesByCode.get('PU'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('SM1'), 1)];
+        GameData.resourcesByCode.get('RP').buildCost = [new BuildCost(GameData.resourcesByCode.get('LDS'), 10), 
+            new BuildCost(GameData.resourcesByCode.get('RCU'), 10), new BuildCost(GameData.resourcesByCode.get('ROCFUEL'), 10)];
 
         // Hand crafting costs.
         GameData.resourcesByCode.get('IROPL').handCraftCost = [new BuildCost(GameData.resourcesByCode.get('COAL'), 3.5)];
@@ -388,6 +555,7 @@ export class GameData {
             new CraftingItem('OILREF', 'Oil refinery', 'assets/icons/oil-refinery.png', [], [], 'SMELTING'),
             new CraftingItem('OFFPUMP', 'Offshore pump', 'assets/icons/offshore-pump.png', [], [], 'MINING'),
             new CraftingItem('CHEMPLANT', 'Chemical plant', 'assets/icons/chemical-plant.png', [], [], 'SMELTING'),
+            new CraftingItem('RS', 'Rocket silo', 'assets/icons/rocket-silo.png', [], [], 'SMELTING'),
         ];
 
         GameData.craftingsByCode = new Map(GameData.craftings.map((crafting) : [string, CraftingItem] => [crafting.code, crafting]));
@@ -407,6 +575,7 @@ export class GameData {
         GameData.craftingsByCode.get('OILREF').consumme = [new Consumption(420, GameData.resourcesByCode.get('ELEC'))];
         GameData.craftingsByCode.get('CHEMPLANT').consumme = [new Consumption(210, GameData.resourcesByCode.get('ELEC'))];
         GameData.craftingsByCode.get('SOLPAN').consumme = [];
+        GameData.craftingsByCode.get('RS').consumme = [new Consumption(4000, GameData.resourcesByCode.get('ELEC'))];
 
         GameData.craftingsByCode.get('BMD').buildCost = [
             new BuildCost(GameData.resourcesByCode.get('IGW'), 3), 
@@ -476,6 +645,13 @@ export class GameData {
             new BuildCost(GameData.resourcesByCode.get('IGW'), 5), 
             new BuildCost(GameData.resourcesByCode.get('PIPE'), 5),
             new BuildCost(GameData.resourcesByCode.get('STEPL'), 5)
+        ];
+        GameData.craftingsByCode.get('RS').buildCost = [
+            new BuildCost(GameData.resourcesByCode.get('CONC'), 1000), 
+            new BuildCost(GameData.resourcesByCode.get('EENGU'), 100), 
+            new BuildCost(GameData.resourcesByCode.get('PIPE'), 100),
+            new BuildCost(GameData.resourcesByCode.get('PU'), 100),
+            new BuildCost(GameData.resourcesByCode.get('STEPL'), 1000)
         ];
     }
 

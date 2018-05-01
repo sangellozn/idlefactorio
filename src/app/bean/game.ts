@@ -40,7 +40,6 @@ export class Game {
             this.initEmptyGame();
             this.save();
         }
-        
         this.gameLoopIntervalId = window.setInterval(() => {this.gameLoop()}, Game.roundDuration);
         this.gameSaveIntervalId = window.setInterval(() => {this.save()}, Game.saveInterval);
     }
@@ -53,7 +52,7 @@ export class Game {
             localStorage.removeItem(Game.localStorageKey);
         }
 
-        location.reload(); //FIXME un peu dégueu.
+        window.location.href = '/';
     }
 
     private initEmptyGame(): void {
@@ -90,8 +89,7 @@ export class Game {
 
     public gameLoop(): void {
         this.stocks.forEach((value, key) => {
-            // Electricity cannot be stored.
-            // TODO evolve on electricity storage.
+            // Electricity and water are not stored.
             if (!['ELEC', 'WATER'].includes(value.resource.code)) {
                 value.computeStockValue();
             }
@@ -102,6 +100,7 @@ export class Game {
         if (!Game.instance) {
             Game.instance = new Game();
         }
+
 
         return Game.instance;
     }

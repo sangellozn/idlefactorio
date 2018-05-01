@@ -1,0 +1,14 @@
+<div class="menu">
+  <a routerLink="/game">Main</a>&nbsp;-&nbsp;
+  <a routerLink="/research">Research</a>&nbsp;-&nbsp;
+  <a routerLink="/achivements">Achievements</a>&nbsp;-&nbsp;
+  <a href="javascript:void(0)" (click)="saveGame()">Save game</a>&nbsp;-&nbsp;
+  <a href="javascript:void(0)">Export/import save</a>&nbsp;-&nbsp;
+  <a routerLink="/help">Help</a>&nbsp;-&nbsp;
+  <a routerLink="/credits">Credits</a>&nbsp;-&nbsp;
+  <a href="javascript:void(0)" (click)="resetGame()">Reset game</a>
+</div>
+<div class="game-alert">
+  <div class="alert alert-success" *ngIf="displayGameSavedAlert">Game has been saved !</div>
+  <div class="alert alert-warning" *ngIf="!hasLocalStorage">Your browser does not support localStorage, game will not be saved !</div>
+</div>

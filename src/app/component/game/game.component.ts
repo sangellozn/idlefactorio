@@ -9,29 +9,11 @@ import { Game } from '../../bean/game';
 export class GameComponent implements OnInit {
 
   private game:Game;
-  public displayGameSavedAlert:boolean;
-  public hasLocalStorage:boolean;
 
   constructor() { 
-    this.game = Game.getInstance(); 
-    this.displayGameSavedAlert = false; 
-    this.hasLocalStorage = localStorage ? true : false;
+    this.game = Game.getInstance();
   }
 
-  ngOnInit() {
-    this.game.init();
-  }
-
-  saveGame() {
-    this.game.save();
-    this.displayGameSavedAlert = true;
-    window.setTimeout(() => {this.displayGameSavedAlert = false}, 3000);
-  }
-
-  resetGame() {
-    if (confirm('Warning: Your progression will be erased ! Are you sure ?')) {
-      this.game.resetGame();
-    }
-  }
+  ngOnInit() { }
 
 }

@@ -12,6 +12,12 @@ import { ExtractingDisplayComponent } from './component/extracting-display/extra
 import { ExtractingItemDisplayComponent } from './component/extracting-item-display/extracting-item-display.component';
 import { FurnaceDisplayComponent } from './component/furnace-display/furnace-display.component';
 import { ElectricityDisplayComponent } from './component/electricity-display/electricity-display.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { ResearchComponent } from './component/research/research.component';
+import { AchivementsComponent } from './component/achivements/achivements.component';
+import { HelpComponent } from './component/help/help.component';
+import { CreditsComponent } from './component/credits/credits.component';
+import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -24,11 +30,17 @@ import { ElectricityDisplayComponent } from './component/electricity-display/ele
     ExtractingDisplayComponent,
     ExtractingItemDisplayComponent,
     FurnaceDisplayComponent,
-    ElectricityDisplayComponent
+    ElectricityDisplayComponent,
+    ResearchComponent,
+    AchivementsComponent,
+    HelpComponent,
+    CreditsComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
