@@ -12,7 +12,7 @@ import { ProductionInfo } from '../../bean/production-info';
 })
 export class ExtractingDisplayComponent implements OnInit {
 
-  private extractingItems:ProductionInfo[];
+  public extractingItems:ProductionInfo[];
 
   constructor() { }
 

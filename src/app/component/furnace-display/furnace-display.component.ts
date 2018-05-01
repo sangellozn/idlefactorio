@@ -9,7 +9,7 @@ import { Game } from '../../bean/game';
 })
 export class FurnaceDisplayComponent implements OnInit {
 
-  private furnacingItems:ProductionInfo[];
+  public furnacingItems:ProductionInfo[];
 
   constructor() { }
 

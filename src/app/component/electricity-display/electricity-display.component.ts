@@ -10,7 +10,7 @@ import { ProductionInfo } from '../../bean/production-info';
 export class ElectricityDisplayComponent implements OnInit {
 
   private game:Game;
-  private powering:ProductionInfo;
+  public powering:ProductionInfo;
 
   constructor() {
     this.game = Game.getInstance();

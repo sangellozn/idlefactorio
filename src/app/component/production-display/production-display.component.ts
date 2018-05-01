@@ -10,7 +10,7 @@ import { Game } from '../../bean/game';
 })
 export class ProductionDisplayComponent implements OnInit {
 
-  private stockInfos:StockInfo[] = [];
+  public stockInfos:StockInfo[] = [];
 
   constructor() { }
 

@@ -58,6 +58,10 @@ span.total {
     opacity: 0.85;
 }
 
+.ingredient {
+    margin: 3px;
+}
+
 .counter {
     display: flex;
     flex-direction: column;

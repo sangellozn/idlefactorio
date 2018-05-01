@@ -13,7 +13,7 @@ import { Consumption } from '../../bean/consumption';
 })
 export class ExtractingItemDisplayComponent implements OnInit {
 
-  @Input() private extractingInfo:ProductionInfo;
+  @Input() public extractingInfo:ProductionInfo;
   private game:Game;
 
   constructor() {

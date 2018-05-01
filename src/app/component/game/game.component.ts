@@ -9,8 +9,8 @@ import { Game } from '../../bean/game';
 export class GameComponent implements OnInit {
 
   private game:Game;
-  private displayGameSavedAlert:boolean;
-  private hasLocalStorage:boolean;
+  public displayGameSavedAlert:boolean;
+  public hasLocalStorage:boolean;
 
   constructor() { 
     this.game = Game.getInstance(); 

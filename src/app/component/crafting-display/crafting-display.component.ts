@@ -9,7 +9,7 @@ import { Game } from '../../bean/game';
 })
 export class CraftingDisplayComponent implements OnInit {
 
-  private craftingItems:ProductionInfo[];
+  public craftingItems:ProductionInfo[];
 
   constructor() { }
 

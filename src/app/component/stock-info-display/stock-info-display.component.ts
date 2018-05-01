@@ -18,7 +18,7 @@ export class StockInfoDisplayComponent implements OnInit {
   private progressBarId:number;
   private progressBarWidth:number;
   private progressBarStep:number;
-  private game:Game;
+  public game:Game;
 
   constructor() { 
     this.game = Game.getInstance();

@@ -21,7 +21,7 @@
         </div>
       </ng-template>
     <img src="{{resource.icon}}" title="{{resource.name}}" 
-      [ngbTooltip]="recipe"
+      [ngbTooltip]="resource.buildCost.length > 0 ? recipe : null"
       placement="left"
       [ngClass]="{'can-mine': resource.handCrafted && game.canCraft(resource)}" (click)="mineResource()" height="32" width="32" />
     <div *ngIf="resource.handCrafted" class="mining-pb">

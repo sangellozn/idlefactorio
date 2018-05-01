@@ -17,15 +17,16 @@
             <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(buildCost.resource, buildCost.qty)}">{{buildCost.qty}}</span>
             <span class="resource"><img src="{{buildCost.resource.icon}}" title="{{buildCost.resource.name}}" height="32" width="32" /></span>
           </div>
-          <div class="separator"></div>
-          <h6>Consumption</h6>
-          <div class="ingredient" *ngFor="let cons of getConsummeUnion(productionQty)">
-            <span class="qty" [ngClass]="{'not-enougth': 
+          <div *ngIf="getConsummeUnion(productionQty).length > 0">
+            <div class="separator"></div>
+            <h6>Consumption</h6>
+            <div class="ingredient" *ngFor="let cons of getConsummeUnion(productionQty)">
+              <span class="qty" [ngClass]="{'not-enougth': 
               (extractingInfo.resource.code !== 'COAL' || extractingInfo.resource.code === 'COAL' && cons.resource.code === 'ELEC')
               && !game.canConsume(cons.resource, cons.qty)}">{{cons.qty}}</span>
-            <span class="resource"><img src="{{cons.resource.icon}}" title="{{cons.resource.name}}" height="32" width="32" /></span>
+              <span class="resource"><img src="{{cons.resource.icon}}" title="{{cons.resource.name}}" height="32" width="32" /></span>
+            </div>
           </div>
-          <div class="ingredient" *ngIf="getConsummeUnion(productionQty).length === 0"><span class="qty">N/A</span></div>
         </div>
       </ng-template>
       <img src="{{productionQty.recipe.craftingItem.icon}}" title="{{productionQty.recipe.craftingItem.name}}" 

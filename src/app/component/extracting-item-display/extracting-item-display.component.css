@@ -4,6 +4,7 @@
     padding: 5px;
     background-color: #444;
     margin: 2px;
+    width: 130px;
 }
 
 .extracting-item-ore {
@@ -14,10 +15,12 @@
     display: flex;
     flex-direction: row;
     padding: 5px;
+    justify-content: center;
 }
 
 .extractor-item {
     text-align: center;
+    margin: 2px;
 }
 
 .total {
