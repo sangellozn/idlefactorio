@@ -18,6 +18,7 @@ import { AchivementsComponent } from './component/achivements/achivements.compon
 import { HelpComponent } from './component/help/help.component';
 import { CreditsComponent } from './component/credits/credits.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { ResearchItemComponent } from './component/research-item/research-item.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
     AchivementsComponent,
     HelpComponent,
     CreditsComponent,
-    NavBarComponent
+    NavBarComponent,
+    ResearchItemComponent
   ],
   imports: [
     BrowserModule,

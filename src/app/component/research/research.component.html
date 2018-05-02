@@ -1,3 +1,15 @@
-<p>
-  research works!
-</p>
+<div class="container">
+  <div class="science-packs-prod">
+    <app-stock-info-display *ngFor="let sp of sciencePacks"
+    [resource]="sp.resource"
+    [stock]="sp.stock"
+    [consuming]="sp.consuming"
+    [producing]="sp.producing"
+    ></app-stock-info-display>
+  </div>
+</div>
+<div class="container">
+  <div class="research-items">
+    <app-research-item *ngFor="let item of researchItems" [researchItem]="item"></app-research-item>
+  </div>
+</div>

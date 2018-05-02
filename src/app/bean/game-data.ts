@@ -3,6 +3,8 @@ import { ResourceItem } from "./resource-item";
 import { Consumption } from "./consumption";
 import { BuildCost } from "./build-cost";
 import { Recipe, ProductionValue } from "./recipe";
+import { ResearchItem } from "./research-item";
+import { ResearchCost } from "./research-cost";
 
 export class GameData {
 
@@ -14,11 +16,37 @@ export class GameData {
 
     public static craftingsByCode:Map<string, CraftingItem>;
 
+    public static researchItems:ResearchItem[];
+
+    public static researchItemsByCode:Map<string, ResearchItem>;
+
     public static initGameData(): void {
         GameData.initResourceDef();
         GameData.initCraftingDef();
         GameData.initResourceCost();
         GameData.initCraftingCost();
+        GameData.initResearch();
+    }
+
+    public static initResearch(): void {
+        GameData.researchItems = [
+            new ResearchItem('AUTOMAT', 'Automation', 'assets/icons/research/automation.png', false, [new ResearchCost(10, GameData.resourcesByCode.get('SP1'))], 100),
+            new ResearchItem('ELECTR', 'Electronics', 'assets/icons/research/electronics.png', false, [new ResearchCost(30, GameData.resourcesByCode.get('SP1'))], 450)
+        ];
+
+        GameData.researchItemsByCode = new Map(GameData.researchItems.map((item) : [string, ResearchItem] => [item.code, item]));
+
+        GameData.researchItemsByCode.get('AUTOMAT').dependsOn = [];
+        GameData.researchItemsByCode.get('ELECTR').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT')];
+
+
+        GameData.researchItemsByCode.get('AUTOMAT').unlocks = [GameData.researchItemsByCode.get('ELECTR')];
+
+
+        GameData.researchItemsByCode.get('AUTOMAT').unlocksBuild = [GameData.resourcesByCode.get('ASSM1')];
+
+        GameData.resourcesByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
+        GameData.craftingsByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
     }
 
     public static initResourceDef(): void {
@@ -74,6 +102,12 @@ export class GameData {
             new ResourceItem('RCU', 'Rocket control unit', 'assets/icons/rocket-control-unit.png', true, [], 30, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('RP', 'Rocket part', 'assets/icons/rocket-part.png', true, [], 3, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('SAT', 'Satellite', 'assets/icons/satellite.png', true, [], 5, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('SP1', 'Science pack 1', 'assets/icons/science-pack-1.png', true, [], 5, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
+            new ResourceItem('SP2', 'Science pack 2', 'assets/icons/science-pack-2.png', true, [], 6, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
+            new ResourceItem('SP3', 'Science pack 3', 'assets/icons/science-pack-3.png', true, [], 12, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
+            new ResourceItem('SP4', 'Production science pack', 'assets/icons/production-science-pack.png', true, [], 7, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
+            new ResourceItem('SP5', 'High tech science pack', 'assets/icons/high-tech-science-pack.png', true, [], 7, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
+            new ResourceItem('SP6', 'Space science pack', 'assets/icons/space-science-pack.png', false, [], 0, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
             //new ResourceItem('RS', 'Rocket silo', 'assets/icons/rocket-silo.png', false, [], 0, [], [], ['CRAFTABLE', 'STOCKABLE']),
         ];  
 
@@ -486,7 +520,20 @@ export class GameData {
                 new Consumption(3.35, GameData.resourcesByCode.get('ROCFUEL'))
             ])
         ];
-        
+        GameData.resourcesByCode.get('SP1').craftedWith = [
+            new Recipe([new ProductionValue(0.1, GameData.resourcesByCode.get('SP1'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(0.1, GameData.resourcesByCode.get('COPPL')),
+                new Consumption(0.1, GameData.resourcesByCode.get('IGW'))
+            ]), 
+            new Recipe([new ProductionValue(0.15, GameData.resourcesByCode.get('SP1'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.15, GameData.resourcesByCode.get('COPPL')),
+                new Consumption(0.15, GameData.resourcesByCode.get('IGW'))
+            ]),
+            new Recipe([new ProductionValue(0.25, GameData.resourcesByCode.get('SP1'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.25, GameData.resourcesByCode.get('COPPL')),
+                new Consumption(0.25, GameData.resourcesByCode.get('IGW'))
+            ])
+        ];
 
         // Building costs.
         GameData.resourcesByCode.get('IROPL').buildCost = [new BuildCost(GameData.resourcesByCode.get('IRONO'), 1)];
@@ -530,6 +577,16 @@ export class GameData {
             new BuildCost(GameData.resourcesByCode.get('SM1'), 1)];
         GameData.resourcesByCode.get('RP').buildCost = [new BuildCost(GameData.resourcesByCode.get('LDS'), 10), 
             new BuildCost(GameData.resourcesByCode.get('RCU'), 10), new BuildCost(GameData.resourcesByCode.get('ROCFUEL'), 10)];
+        GameData.resourcesByCode.get('SP1').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 1)];
+        GameData.resourcesByCode.get('SP2').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 1)]; // FIXME
+        GameData.resourcesByCode.get('SP3').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 1)]; // FIXME
+        GameData.resourcesByCode.get('SP4').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 1)]; // FIXME
+        GameData.resourcesByCode.get('SP5').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 1), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 1)]; // FIXME
 
         // Hand crafting costs.
         GameData.resourcesByCode.get('IROPL').handCraftCost = [new BuildCost(GameData.resourcesByCode.get('COAL'), 3.5)];

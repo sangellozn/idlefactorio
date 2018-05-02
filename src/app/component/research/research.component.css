@@ -1,0 +1,11 @@
+.research-items {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.science-packs-prod {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

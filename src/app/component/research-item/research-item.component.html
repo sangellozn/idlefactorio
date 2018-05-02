@@ -1,0 +1,40 @@
+<div class="research-item">
+  <ng-template #dependsOn>
+    <h6>Search duration</h6>
+    <div>{{researchItem.duration}} sec</div>
+    <div *ngIf="researchItem.dependsOn.length > 0">
+      <div class="separator"></div>
+      <h6>Requires</h6>
+      <div *ngFor="let dep of researchItem.dependsOn" class="research" [ngClass]="{'locked': !dep.isUnlocked, 'unlocked': dep.isUnlocked}">
+        <img src="{{dep.icon}}" title="{{dep.name}}" height="64" width="64" />
+      </div>
+    </div>
+  </ng-template>
+  <div class="research" [ngClass]="{'locked': !researchItem.isUnlocked, 'unlocked': researchItem.isUnlocked, 'can-search': game.canSearch(researchItem)}">
+    <img src="{{researchItem.icon}}" title="{{researchItem.name}}" 
+      [ngbTooltip]="dependsOn" 
+      placement="left"
+      (click)="search()"
+    />
+  </div>
+  <div class="cost-container" *ngIf="researchItem.cost.length > 0">
+    <h6>Costs</h6>
+    <div class="cost">
+      <div class="cost-item" *ngFor="let cost of researchItem.cost">
+        <img src="{{cost.resource.icon}}" title="{{cost.resource.name}}" />
+        <span class="qty" [ngClass]="{'not-enought': !game.hasEnougthStock(cost.resource, cost.qty)}">{{cost.qty}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="unlock-wrapper" *ngIf="researchItem.unlocksBuild.length > 0">
+    <h6>Unlocks</h6>
+    <div class="unlock-items">
+      <div class="unlocked-item" *ngFor="let buildItem of researchItem.unlocksBuild">
+        <img src="{{buildItem.icon}}" title="{{buildItem.name}}" />
+      </div>
+    </div>
+  </div>
+  <div *ngIf="researchItem.searching" class="searching-pb">
+    <div class="searching-pb-progress" [ngStyle]="{'width':researchItem.searchProgression + '%'}"></div>
+  </div>
+</div>

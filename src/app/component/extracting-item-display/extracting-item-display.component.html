@@ -6,7 +6,7 @@
     <div *ngFor="let productionQty of extractingInfo.productionQtys" class="extractor-item">
       <ng-template #recipe>
         <div class="recipe">
-          <h6>Produce</h6>
+          <h6>Produce (item/sec)</h6>
           <div class="ingredient" *ngFor="let prodValue of productionQty.recipe.produces" >
             <span class="qty">{{prodValue.produces}}</span>
             <span class="resource"><img src="{{prodValue.resourceItem.icon}}" title="{{prodValue.resourceItem.name}}" height="32" width="32" /></span>
@@ -19,7 +19,7 @@
           </div>
           <div *ngIf="getConsummeUnion(productionQty).length > 0">
             <div class="separator"></div>
-            <h6>Consumption</h6>
+            <h6>Consume (item/sec)</h6>
             <div class="ingredient" *ngFor="let cons of getConsummeUnion(productionQty)">
               <span class="qty" [ngClass]="{'not-enougth': 
               (extractingInfo.resource.code !== 'COAL' || extractingInfo.resource.code === 'COAL' && cons.resource.code === 'ELEC')

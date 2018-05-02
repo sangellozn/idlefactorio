@@ -7,6 +7,7 @@ import { ProductionInfo, ProductionQty } from "./production-info";
 import { BuildableItem } from "./buildable-item";
 import { Consumption } from "./consumption";
 import { Recipe } from "./recipe";
+import { ResearchItem } from "./research-item";
 
 export class Game {
 
@@ -21,6 +22,8 @@ export class Game {
     private gameLoopIntervalId;
     private gameSaveIntervalId;
 
+    private searchIsRunning;
+
     private stocks: Map<string, StockInfo>;
     // Crafting items that extract resources.
     private extractingItems: Map<string, ProductionInfo>;
@@ -33,6 +36,7 @@ export class Game {
 
     private constructor() {
         GameData.initGameData();
+        this.searchIsRunning = false;
     }
 
     public init():void {
@@ -101,7 +105,6 @@ export class Game {
             Game.instance = new Game();
         }
 
-
         return Game.instance;
     }
 
@@ -123,6 +126,14 @@ export class Game {
 
     public getElectricityItem():ProductionInfo {
         return this.electricityItem;
+    }
+
+    public getResearchItems():ResearchItem[] {
+        return GameData.researchItems;
+    }
+
+    public getSciencePackItems(): StockInfo[] {
+        return Array.from(this.stocks.values()).filter((st) => st.resource.category.includes('SCIENCE_PACK'));
     }
 
     public increaseStock(resource:ResourceItem, qty:number):void {
@@ -233,10 +244,6 @@ export class Game {
     public canConsume(resource:ResourceItem, targetConsQty:number) {
         return this.hasEnoughtProduction(resource, 0, targetConsQty);
     }
-
-    /*public getCorrespondingRecipe(productionInfo:ProductionInfo, item:CraftingItem): Recipe {
-        return productionInfo.productionQtys.filter((pqty) => pqty.recipe.craftingItem.code === item.code)[0].recipe;
-    }*/
 
     /**
      * If building the crafter will not depleat the stock.
@@ -370,6 +377,49 @@ export class Game {
         for (let produceValue of correspondingProductionQty.recipe.produces) {
             this.stocks.get(produceValue.resourceItem.code).decreaseProduction(produceValue.produces);
         }
+    }
+
+    public canSearch(research:ResearchItem): boolean {
+        if (research.isUnlocked || this.searchIsRunning) {
+            return false;
+        }
+
+
+        for (let dependsOn of research.dependsOn) {
+            if (!dependsOn.isUnlocked) {
+                return false;
+            }
+        }
+
+        for (let resourceCost of research.cost) {
+            if (!this.hasEnougthStock(resourceCost.resource, resourceCost.qty)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public search(research:ResearchItem): void {
+        for (let resourceCost of research.cost) {
+            this.decreaseStock(resourceCost.resource, resourceCost.qty);
+        }
+
+        this.searchIsRunning = true;
+        research.searching = true;
+
+        const intervalId = window.setInterval(() => {
+            const progresStep = 100 / research.duration;
+            if (research.searchProgression + progresStep >= 100) {
+                research.searchProgression = 100;
+                research.searching = false;
+                research.isUnlocked = true;
+                this.searchIsRunning = false;
+                window.clearInterval(intervalId);
+            } else {
+                research.searchProgression += progresStep;
+            }
+        }, 1000);
     }
 
 }

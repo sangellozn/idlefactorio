@@ -1,7 +1,7 @@
 <div class="stock-info-card">
   <div class="stock-info-card-data">
     <ng-template #recipe>
-        <h6>Crafting cost</h6>
+        <h6>Crafting ({{resource.craftDuration}} sec)</h6>
         <div class="recipe" *ngIf="resource.buildCost.length > 0">
           <div class="ingredient" *ngFor="let buildCost of resource.buildCost">
             <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(buildCost.resource, buildCost.qty)}">{{buildCost.qty}}</span>
