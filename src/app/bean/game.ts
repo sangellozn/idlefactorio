@@ -256,7 +256,6 @@ export class Game {
             return false;
         }
         const productionInfo = this.getProductionInfo(resource);
-        //const correspondingRecipe = this.getCorrespondingRecipe(productionInfo, item);
         let correspondingProductionQty = this.getProductionQty(productionInfo, item);
 
         // The crafting item does not produce the checked resource
@@ -383,7 +382,6 @@ export class Game {
         if (research.isUnlocked || this.searchIsRunning) {
             return false;
         }
-
 
         for (let dependsOn of research.dependsOn) {
             if (!dependsOn.isUnlocked) {

@@ -31,22 +31,78 @@ export class GameData {
     public static initResearch(): void {
         GameData.researchItems = [
             new ResearchItem('AUTOMAT', 'Automation', 'assets/icons/research/automation.png', false, [new ResearchCost(10, GameData.resourcesByCode.get('SP1'))], 100),
-            new ResearchItem('ELECTR', 'Electronics', 'assets/icons/research/electronics.png', false, [new ResearchCost(30, GameData.resourcesByCode.get('SP1'))], 450)
+            new ResearchItem('OPTICS', 'Optics', 'assets/icons/research/optics.png', false, [new ResearchCost(10, GameData.resourcesByCode.get('SP1'))], 150),
+            new ResearchItem('STEELPROC', 'Steel processing', 'assets/icons/research/steel-processing.png', false, [new ResearchCost(50, GameData.resourcesByCode.get('SP1'))], 250),
+            new ResearchItem('ELECTR', 'Electronics', 'assets/icons/research/electronics.png', false, [new ResearchCost(30, GameData.resourcesByCode.get('SP1'))], 450),
+            new ResearchItem('AUTOMAT2', 'Automation 2', 'assets/icons/research/automation.png', false, [new ResearchCost(80, GameData.resourcesByCode.get('SP1'))], 400),
+            new ResearchItem('ENGINE', 'Engine', 'assets/icons/research/engine.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 1500),
+            new ResearchItem('OILGATH', 'Oil gathering', 'assets/icons/research/oil-gathering.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 3000),
+            new ResearchItem('SULFURPROC', 'Sulfur processing', 'assets/icons/research/sulfur-processing.png', false, [new ResearchCost(150, GameData.resourcesByCode.get('SP1')), new ResearchCost(150, GameData.resourcesByCode.get('SP2'))], 4500),
+            new ResearchItem('BAT', 'Battery', 'assets/icons/research/battery.png', false, [new ResearchCost(150, GameData.resourcesByCode.get('SP1')), new ResearchCost(150, GameData.resourcesByCode.get('SP2'))], 4500),
+            new ResearchItem('PLASTICS', 'Plastics', 'assets/icons/research/plastics.png', false, [new ResearchCost(200, GameData.resourcesByCode.get('SP1')), new ResearchCost(200, GameData.resourcesByCode.get('SP2'))], 6000),
+            new ResearchItem('ADVCELEC', 'Advanced Electronics', 'assets/icons/research/advanced-electronics.png', false, [new ResearchCost(200, GameData.resourcesByCode.get('SP1')), new ResearchCost(200, GameData.resourcesByCode.get('SP2'))], 3000),
+            new ResearchItem('ELECENGINE', 'Electric engine', 'assets/icons/research/electric-engine.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 3000),
+            new ResearchItem('MODULES', 'Modules', 'assets/icons/research/module.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 3000),
+            new ResearchItem('SMODULES', 'Speed modules', 'assets/icons/research/speed-module.png', false, [new ResearchCost(50, GameData.resourcesByCode.get('SP1')), new ResearchCost(50, GameData.resourcesByCode.get('SP2'))], 1500),
+            new ResearchItem('AUTOMAT3', 'Automation 3', 'assets/icons/research/automation.png', false, [new ResearchCost(80, GameData.resourcesByCode.get('SP1')),
+                new ResearchCost(80, GameData.resourcesByCode.get('SP2')), new ResearchCost(80, GameData.resourcesByCode.get('SP3')), 
+                new ResearchCost(80, GameData.resourcesByCode.get('SP4'))], 9000),
+            new ResearchItem('SOLENERG', 'Solar energy', 'assets/icons/research/solar-energy.png', false, [new ResearchCost(250, GameData.resourcesByCode.get('SP1')), new ResearchCost(250, GameData.resourcesByCode.get('SP2'))], 7500),
         ];
 
         GameData.researchItemsByCode = new Map(GameData.researchItems.map((item) : [string, ResearchItem] => [item.code, item]));
 
         GameData.researchItemsByCode.get('AUTOMAT').dependsOn = [];
+        GameData.researchItemsByCode.get('OPTICS').dependsOn = [];
+        GameData.researchItemsByCode.get('STEELPROC').dependsOn = [];
         GameData.researchItemsByCode.get('ELECTR').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT')];
+        GameData.researchItemsByCode.get('AUTOMAT2').dependsOn = [GameData.researchItemsByCode.get('ELECTR')];
+        GameData.researchItemsByCode.get('ENGINE').dependsOn = [GameData.researchItemsByCode.get('STEELPROC'), GameData.researchItemsByCode.get('AUTOMAT2')];
+        GameData.researchItemsByCode.get('OILGATH').dependsOn = [GameData.researchItemsByCode.get('STEELPROC')];
+        GameData.researchItemsByCode.get('PLASTICS').dependsOn = [GameData.researchItemsByCode.get('OILGATH')];
+        GameData.researchItemsByCode.get('ADVCELEC').dependsOn = [GameData.researchItemsByCode.get('ELECTR'), GameData.researchItemsByCode.get('PLASTICS')];
+        GameData.researchItemsByCode.get('ELECENGINE').dependsOn = [GameData.researchItemsByCode.get('ADVCELEC'), GameData.researchItemsByCode.get('ENGINE')];
+        GameData.researchItemsByCode.get('MODULES').dependsOn = [GameData.researchItemsByCode.get('ADVCELEC')];
+        GameData.researchItemsByCode.get('SMODULES').dependsOn = [GameData.researchItemsByCode.get('MODULES')];
+        GameData.researchItemsByCode.get('AUTOMAT3').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT2'), GameData.researchItemsByCode.get('SMODULES')];
+        GameData.researchItemsByCode.get('AUTOMAT3').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT2'), GameData.researchItemsByCode.get('SMODULES')];
+        GameData.researchItemsByCode.get('SOLENERG').dependsOn = [GameData.researchItemsByCode.get('ELECTR'), GameData.researchItemsByCode.get('OPTICS'), GameData.researchItemsByCode.get('STEELPROC')];
+        GameData.researchItemsByCode.get('SULFURPROC').dependsOn = [GameData.researchItemsByCode.get('OILGATH')];
+        GameData.researchItemsByCode.get('BAT').dependsOn = [GameData.researchItemsByCode.get('SULFURPROC')];
 
-
-        GameData.researchItemsByCode.get('AUTOMAT').unlocks = [GameData.researchItemsByCode.get('ELECTR')];
+        /*GameData.researchItemsByCode.get('AUTOMAT').unlocks = [GameData.researchItemsByCode.get('ELECTR')];
+        GameData.researchItemsByCode.get('STEELPROC').unlocks = [GameData.researchItemsByCode.get('ENGINE')];
+        GameData.researchItemsByCode.get('ELECTR').unlocks = [GameData.researchItemsByCode.get('AUTOMAT2'), GameData.researchItemsByCode.get('ADVCELEC')];
+        GameData.researchItemsByCode.get('AUTOMAT2').unlocks = [GameData.researchItemsByCode.get('ENGINE')];
+        GameData.researchItemsByCode.get('ENGINE').unlocks = [];
+        GameData.researchItemsByCode.get('OILGATH').unlocks = [GameData.researchItemsByCode.get('PLASTICS')];
+        GameData.researchItemsByCode.get('PLASTICS').unlocks = [GameData.researchItemsByCode.get('ADVCELEC')];
+        GameData.researchItemsByCode.get('ADVCELEC').unlocks = [GameData.researchItemsByCode.get('ELECENGINE')];
+        GameData.researchItemsByCode.get('ELECENGINE').unlocks = [];*/
 
 
         GameData.researchItemsByCode.get('AUTOMAT').unlocksBuild = [GameData.resourcesByCode.get('ASSM1')];
+        GameData.researchItemsByCode.get('STEELPROC').unlocksBuild = [];
+        GameData.researchItemsByCode.get('AUTOMAT2').unlocksBuild = [GameData.resourcesByCode.get('ASSM2')];
+        GameData.researchItemsByCode.get('ENGINE').unlocksBuild = [GameData.resourcesByCode.get('ENGU')];
+        GameData.researchItemsByCode.get('OILGATH').unlocksBuild = [GameData.resourcesByCode.get('PUMJ'), 
+            GameData.resourcesByCode.get('OILREF'), GameData.resourcesByCode.get('CHEMPLANT'), GameData.resourcesByCode.get('BOILPROC'), 
+            GameData.resourcesByCode.get('SOLFUHO'), GameData.resourcesByCode.get('SOLFULO'), GameData.resourcesByCode.get('SOLFUPG'), 
+            GameData.resourcesByCode.get('LUB')];
+        GameData.researchItemsByCode.get('PLASTICS').unlocksBuild = [GameData.resourcesByCode.get('PLASBAR')];
+        GameData.researchItemsByCode.get('ADVCELEC').unlocksBuild = [GameData.resourcesByCode.get('ADVC'), GameData.resourcesByCode.get('SP3')];
+        GameData.researchItemsByCode.get('ELECENGINE').unlocksBuild = [GameData.resourcesByCode.get('EENGU')];
+        GameData.researchItemsByCode.get('MODULES').unlocksBuild = [];
+        GameData.researchItemsByCode.get('SMODULES').unlocksBuild = [GameData.resourcesByCode.get('SM1')];
+        GameData.researchItemsByCode.get('AUTOMAT3').unlocksBuild = [GameData.resourcesByCode.get('ASSM3')];
+        GameData.researchItemsByCode.get('SOLENERG').unlocksBuild = [GameData.resourcesByCode.get('SOLPAN')];
+        GameData.researchItemsByCode.get('SULFURPROC').unlocksBuild = [GameData.resourcesByCode.get('SULF'), GameData.resourcesByCode.get('SULFAC')];
+        GameData.researchItemsByCode.get('BAT').unlocksBuild = [GameData.resourcesByCode.get('BAT')];
 
+        // FIXME
         GameData.resourcesByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
-        GameData.craftingsByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
+        GameData.resourcesByCode.get('ASSM2').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT2');
+        GameData.resourcesByCode.get('ENGU').unlockedBy = GameData.researchItemsByCode.get('ENGINE');
     }
 
     public static initResourceDef(): void {
@@ -73,6 +129,9 @@ export class GameData {
             new ResourceItem('ASSM1', 'Assembling machine 1', 'assets/icons/assembling-machine-1.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM2', 'Assembling machine 2', 'assets/icons/assembling-machine-2.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM3', 'Assembling machine 3', 'assets/icons/assembling-machine-3.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('PUMJ', 'Pumpjack', 'assets/icons/pumpjack.png', false, [], 0, [], [], []),
+            new ResourceItem('OILREF', 'Oil refinery', 'assets/icons/oil-refinery.png', false, [], 0, [], [], []),
+            new ResourceItem('CHEMPLANT', 'Chemical plant', 'assets/icons/chemical-plant.png', false, [], 0, [], [], []),
             new ResourceItem('ADVC', 'Advanced circuit', 'assets/icons/advanced-circuit.png', true, [], 6, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('SOLPAN', 'Solar panel', 'assets/icons/solar-panel.png', true, [], 10, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('SM1', 'Speed module 1', 'assets/icons/speed-module.png', true, [], 15, [], [], ['CRAFTABLE', 'STOCKABLE']),
