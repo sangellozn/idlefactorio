@@ -2,17 +2,12 @@ import { ResourceItem } from "./resource-item";
 
 export class StockInfo {
 
-    public resource:ResourceItem;
-    public stock:number;
-    public producing:number;
-    public consuming:number;
-
-    constructor(resource:ResourceItem, stock:number = 0, producing:number = 0, consuming:number = 0) {
-        this.resource = resource;
-        this.stock = stock;
-        this.producing = producing;
-        this.consuming = consuming;
-    }
+    constructor(
+        public resource:ResourceItem, 
+        public stock:number = 0, 
+        public producing:number = 0, 
+        public consuming:number = 0
+    ) { }
 
     public increaseStock(qty: number): void {
         this.stock += Math.abs(qty);
@@ -57,9 +52,6 @@ export class StockInfo {
 
     public computeStockValue() {
         this.stock += (this.producing - this.consuming);
-        /*if (this.stock < 0) {
-            this.stock = 0;
-        }*/
     }
 
 }

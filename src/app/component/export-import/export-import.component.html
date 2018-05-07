@@ -1,0 +1,14 @@
+<div class="container">
+  <ngb-alert *ngIf="importFailed" type="danger" (close)="closeAlert()">Cannot import saved game, please check the imported input !</ngb-alert>
+  <div class="export">
+    <h1>Exporting your game :</h1>
+    <p>Keep the following string to make a backup of your progression. If you clear your browser cache, your game can be lost.</p>
+    <textarea>{{exportSave}}</textarea>
+  </div>
+  <div class="import">
+    <h1>Importing a saved game :</h1>
+    <p>Paste your previously exported game to resume your progression !</p>
+    <textarea [(ngModel)]="importSave"></textarea>
+    <button (click)="import()">Import saved game !</button>
+  </div>
+</div>

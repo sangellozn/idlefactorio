@@ -8,6 +8,7 @@ import { BuildableItem } from "./buildable-item";
 import { Consumption } from "./consumption";
 import { Recipe } from "./recipe";
 import { ResearchItem } from "./research-item";
+import { Utils } from "./utils";
 
 export class Game {
 
@@ -100,6 +101,16 @@ export class Game {
         });
     }
 
+    public importSavedGame(importedSave:string): void {
+        if (localStorage) {
+            localStorage.setItem(Game.localStorageKey, Utils.b64_to_utf8(importedSave));
+        } else {
+            console.error('Cannot use localStorage');
+        }
+
+        window.location.href = '/';
+    }
+
     public static getInstance():Game {
         if (!Game.instance) {
             Game.instance = new Game();
@@ -162,11 +173,15 @@ export class Game {
     public save():void {
         if (localStorage) {
             console.log('Saving game...');
-            localStorage.setItem(Game.localStorageKey, new Save(this).toString());
+            localStorage.setItem(Game.localStorageKey, this.getSaveAsString());
             console.log('Game saved !');
         } else {
             console.error('localStorage is not defined, saving not possible.');
         }
+    }
+
+    public getSaveAsString():string {
+        return new Save(this).toString();
     }
 
     private load():boolean {
@@ -174,8 +189,13 @@ export class Game {
             const savedGame = localStorage.getItem(Game.localStorageKey);
 
             if (savedGame !== null) {
-                this.loadSavedGame(JSON.parse(savedGame));
-                return true;
+                try {
+                    this.loadSavedGame(JSON.parse(savedGame));
+                    return true;
+                } catch (e) {
+                    console.error('Exception while loading game: ', e);
+                    return false;
+                }
             }
         } else {
             console.error('localstorage is not defined, loading not possible.');
@@ -187,11 +207,15 @@ export class Game {
     private loadSavedGame(savedGame:Save): void {
         // Loading stock informations.
         this.stocks = new Map();
-        for (let resourceKey of Object.keys(savedGame.stocks)) {
-            this.stocks.set(resourceKey, new StockInfo(GameData.resourcesByCode.get(resourceKey)
-                , savedGame.stocks[resourceKey].stock
-                , savedGame.stocks[resourceKey].producing
-                , savedGame.stocks[resourceKey].consuming));
+        for (let resource of GameData.resources) {
+            if (savedGame.stocks[resource.code]) {
+                this.stocks.set(resource.code, new StockInfo(GameData.resourcesByCode.get(resource.code)
+                    , savedGame.stocks[resource.code].stock
+                    , savedGame.stocks[resource.code].producing
+                    , savedGame.stocks[resource.code].consuming));
+            } else {
+                this.stocks.set(resource.code, new StockInfo(GameData.resourcesByCode.get(resource.code), 0, 0, 0));
+            }
         }
 
         // Loading production items.
@@ -199,11 +223,14 @@ export class Game {
         this.craftingItems = new Map();
         this.extractingItems = new Map();
 
-        for (let resourceKey of Object.keys(savedGame.productionInfos)) {
-            const resource = GameData.resourcesByCode.get(resourceKey);
-            const craftingItem:any = savedGame.productionInfos[resourceKey];
-            const productionInfo = new ProductionInfo(resource, resource.craftedWith.map((recipe, idx) => new ProductionQty(craftingItem[idx].nbBuild, recipe)))
-            
+        for (let resource of GameData.resources) {
+            let productionInfo:ProductionInfo = null;
+            if (savedGame.productionInfos[resource.code]) {
+                productionInfo = new ProductionInfo(resource, resource.craftedWith.map((recipe, idx) => new ProductionQty((savedGame.productionInfos[resource.code][idx] || { nbBuild: 0 }).nbBuild, recipe)));
+            } else {
+                productionInfo = new ProductionInfo(resource, resource.craftedWith.map((recipe, idx) => new ProductionQty(0, recipe)));
+            }
+
             if (resource.category.includes('MINABLE')) {
                 this.extractingItems.set(resource.code, productionInfo);
             } else if (resource.category.includes('SMELTABLE')) {

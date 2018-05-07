@@ -1,0 +1,13 @@
+textarea {
+    width: 90%;
+    height: 150px;
+    padding: 5px;
+}
+
+.import, .export {
+    text-align: center;
+}
+
+.export {
+    margin-bottom: 15px;
+}

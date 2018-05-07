@@ -6,6 +6,7 @@ import { HelpComponent } from './component/help/help.component';
 import { ResearchComponent } from './component/research/research.component';
 import { CreditsComponent } from './component/credits/credits.component';
 import { AchivementsComponent } from './component/achivements/achivements.component';
+import { ExportImportComponent } from './component/export-import/export-import.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'game', pathMatch: 'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'help', component: HelpComponent},
   {path: 'research', component: ResearchComponent},
   {path: 'credits', component: CreditsComponent},
-  {path: 'achivements', component: AchivementsComponent}
+  {path: 'achivements', component: AchivementsComponent},
+  {path: 'expimp', component: ExportImportComponent}
 ];
 
 @NgModule({

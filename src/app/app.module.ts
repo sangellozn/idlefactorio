@@ -19,6 +19,8 @@ import { HelpComponent } from './component/help/help.component';
 import { CreditsComponent } from './component/credits/credits.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ResearchItemComponent } from './component/research-item/research-item.component';
+import { ExportImportComponent } from './component/export-import/export-import.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,12 +39,14 @@ import { ResearchItemComponent } from './component/research-item/research-item.c
     HelpComponent,
     CreditsComponent,
     NavBarComponent,
-    ResearchItemComponent
+    ResearchItemComponent,
+    ExportImportComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
