@@ -7,6 +7,7 @@ export class Save {
     public productionInfos:object;
     public createdAt:Date;
     public version:number = 1;
+    public searchProgress:object;
 
     public constructor(game:Game) {
         this.stocks = game.getStockInfos().reduce((acc, stockInfo) => {
@@ -30,6 +31,16 @@ export class Save {
                 return acc;
             }, {}
         );
+
+        this.searchProgress = game.getResearchItems().reduce((acc, research) => {
+            acc[research.code] = {
+                unlocked: research.isUnlocked,
+                searchPro: research.searchProgression,
+                searching: research.searching
+            }
+
+            return acc;
+        }, {});
 
         this.createdAt = new Date();
     }

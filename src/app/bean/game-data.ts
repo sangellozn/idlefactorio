@@ -30,79 +30,342 @@ export class GameData {
 
     public static initResearch(): void {
         GameData.researchItems = [
-            new ResearchItem('AUTOMAT', 'Automation', 'assets/icons/research/automation.png', false, [new ResearchCost(10, GameData.resourcesByCode.get('SP1'))], 100),
-            new ResearchItem('OPTICS', 'Optics', 'assets/icons/research/optics.png', false, [new ResearchCost(10, GameData.resourcesByCode.get('SP1'))], 150),
-            new ResearchItem('STEELPROC', 'Steel processing', 'assets/icons/research/steel-processing.png', false, [new ResearchCost(50, GameData.resourcesByCode.get('SP1'))], 250),
-            new ResearchItem('ELECTR', 'Electronics', 'assets/icons/research/electronics.png', false, [new ResearchCost(30, GameData.resourcesByCode.get('SP1'))], 450),
+            new ResearchItem('AUTOMAT', 'Automation', 'assets/icons/research/automation.png', false, 
+                [
+                    new ResearchCost(10, GameData.resourcesByCode.get('SP1'))
+                ], 100),
+            new ResearchItem('MILI', 'Military', 'assets/icons/research/military.png', false, 
+                [
+                    new ResearchCost(10, GameData.resourcesByCode.get('SP1'))
+                ], 150),
+            new ResearchItem('TUR', 'Turrets', 'assets/icons/research/turrets.png', false, 
+                [
+                    new ResearchCost(10, GameData.resourcesByCode.get('SP1'))
+                ], 100),
+            new ResearchItem('OPTICS', 'Optics', 'assets/icons/research/optics.png', false, 
+                [
+                    new ResearchCost(10, GameData.resourcesByCode.get('SP1'))
+                ], 150),
+            new ResearchItem('STEELPROC', 'Steel processing', 'assets/icons/research/steel-processing.png', false, 
+                [
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP1'))
+                ], 250),
+            new ResearchItem('MILI2', 'Military 2', 'assets/icons/research/military.png', false, 
+                [
+                    new ResearchCost(20, GameData.resourcesByCode.get('SP1')),
+                    new ResearchCost(20, GameData.resourcesByCode.get('SP2'))
+                ], 300),
+            new ResearchItem('ADVCMP', 'Advanced material processing', 'assets/icons/research/advanced-material-processing.png', false, 
+                [
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP1')),
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP2'))
+                ], 2250),
+            new ResearchItem('CONCRETE', 'Concrete', 'assets/icons/research/concrete.png', false, 
+                [
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP1')),
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP2'))
+                ], 7500),
+            new ResearchItem('ELECTR', 'Electronics', 'assets/icons/research/electronics.png', false, 
+                [
+                    new ResearchCost(30, GameData.resourcesByCode.get('SP1'))
+                ], 450),
             new ResearchItem('AUTOMAT2', 'Automation 2', 'assets/icons/research/automation.png', false, [new ResearchCost(80, GameData.resourcesByCode.get('SP1'))], 400),
             new ResearchItem('ENGINE', 'Engine', 'assets/icons/research/engine.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 1500),
             new ResearchItem('OILGATH', 'Oil gathering', 'assets/icons/research/oil-gathering.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 3000),
+            new ResearchItem('OILPROC', 'Oil processing', 'assets/icons/research/oil-processing.png', false, 
+                [
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP3')),
+                ], 2250),
             new ResearchItem('SULFURPROC', 'Sulfur processing', 'assets/icons/research/sulfur-processing.png', false, [new ResearchCost(150, GameData.resourcesByCode.get('SP1')), new ResearchCost(150, GameData.resourcesByCode.get('SP2'))], 4500),
+            new ResearchItem('FLAM', 'Flammables', 'assets/icons/research/flammables.png', false, 
+                [
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP2'))
+                ], 1500),
+            new ResearchItem('EXPL', 'Explosives', 'assets/icons/research/explosives.png', false, 
+                [
+                    new ResearchCost(100, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(100, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(100, GameData.resourcesByCode.get('SP4'))
+                ], 1500),
             new ResearchItem('BAT', 'Battery', 'assets/icons/research/battery.png', false, [new ResearchCost(150, GameData.resourcesByCode.get('SP1')), new ResearchCost(150, GameData.resourcesByCode.get('SP2'))], 4500),
             new ResearchItem('PLASTICS', 'Plastics', 'assets/icons/research/plastics.png', false, [new ResearchCost(200, GameData.resourcesByCode.get('SP1')), new ResearchCost(200, GameData.resourcesByCode.get('SP2'))], 6000),
-            new ResearchItem('ADVCELEC', 'Advanced Electronics', 'assets/icons/research/advanced-electronics.png', false, [new ResearchCost(200, GameData.resourcesByCode.get('SP1')), new ResearchCost(200, GameData.resourcesByCode.get('SP2'))], 3000),
+            new ResearchItem('ADVCELEC', 'Advanced Electronics', 'assets/icons/research/advanced-electronics.png', false, 
+                [
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP2'))
+                ], 3000),
+            new ResearchItem('ADVCMP2', 'Advanced material processing 2', 'assets/icons/research/advanced-material-processing.png', false, 
+                [
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP1')),
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP3'))
+                ], 7500),
+            new ResearchItem('ADVCELEC2', 'Advanced Electronics 2', 'assets/icons/research/advanced-electronics-2.png', false, 
+                [
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP3')),
+                ], 9000),
             new ResearchItem('ELECENGINE', 'Electric engine', 'assets/icons/research/electric-engine.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 3000),
             new ResearchItem('MODULES', 'Modules', 'assets/icons/research/module.png', false, [new ResearchCost(100, GameData.resourcesByCode.get('SP1')), new ResearchCost(100, GameData.resourcesByCode.get('SP2'))], 3000),
-            new ResearchItem('SMODULES', 'Speed modules', 'assets/icons/research/speed-module.png', false, [new ResearchCost(50, GameData.resourcesByCode.get('SP1')), new ResearchCost(50, GameData.resourcesByCode.get('SP2'))], 1500),
-            new ResearchItem('AUTOMAT3', 'Automation 3', 'assets/icons/research/automation.png', false, [new ResearchCost(80, GameData.resourcesByCode.get('SP1')),
-                new ResearchCost(80, GameData.resourcesByCode.get('SP2')), new ResearchCost(80, GameData.resourcesByCode.get('SP3')), 
-                new ResearchCost(80, GameData.resourcesByCode.get('SP5'))], 9000),
-            new ResearchItem('SOLENERG', 'Solar energy', 'assets/icons/research/solar-energy.png', false, [new ResearchCost(250, GameData.resourcesByCode.get('SP1')), new ResearchCost(250, GameData.resourcesByCode.get('SP2'))], 7500),
+            new ResearchItem('SMODULES', 'Speed modules', 'assets/icons/research/speed-module.png', false, 
+                [
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP2'))
+                ], 1500),
+            new ResearchItem('SMODULES2', 'Speed modules 2', 'assets/icons/research/speed-module.png', false, 
+                [
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP3'))
+                ], 2250),
+            new ResearchItem('SMODULES3', 'Speed modules 3', 'assets/icons/research/speed-module.png', false, 
+                [
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP3')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP6'))
+                ], 9000),
+            new ResearchItem('PMODULES', 'Speed modules', 'assets/icons/research/productivity-module.png', false, 
+                [
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(50, GameData.resourcesByCode.get('SP2'))
+                ], 1500),
+            new ResearchItem('PMODULES2', 'Speed modules 2', 'assets/icons/research/productivity-module.png', false, 
+                [
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(75, GameData.resourcesByCode.get('SP3'))
+                ], 2250),
+            new ResearchItem('PMODULES3', 'Speed modules 3', 'assets/icons/research/productivity-module.png', false, 
+                [
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP3')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP5'))
+                ], 9000),
+            new ResearchItem('AUTOMAT3', 'Automation 3', 'assets/icons/research/automation.png', false, 
+                [
+                    new ResearchCost(80, GameData.resourcesByCode.get('SP1')),
+                    new ResearchCost(80, GameData.resourcesByCode.get('SP2')), 
+                    new ResearchCost(80, GameData.resourcesByCode.get('SP3')), 
+                    new ResearchCost(80, GameData.resourcesByCode.get('SP5'))
+                ], 9000),
+            new ResearchItem('ELECDIST', 'Electric energy distribution', 'assets/icons/research/electric-energy-distribution.png', false, 
+                [
+                    new ResearchCost(120, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(120, GameData.resourcesByCode.get('SP2'))
+                ], 3600),
+            new ResearchItem('ELECACCU', 'Electric energy acumulatiors', 'assets/icons/research/electric-energy-acumulators.png', false, 
+                [
+                    new ResearchCost(150, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(150, GameData.resourcesByCode.get('SP2'))
+                ], 4500),
+            new ResearchItem('SOLENERG', 'Solar energy', 'assets/icons/research/solar-energy.png', false, 
+                [
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(250, GameData.resourcesByCode.get('SP2'))
+                ], 7500),
+            new ResearchItem('ROCK', 'Rocketry', 'assets/icons/research/rocketry.png', false, 
+                [
+                    new ResearchCost(120, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(120, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(120, GameData.resourcesByCode.get('SP4')),
+                ], 1800),
+            new ResearchItem('ROCKSPE1', 'Rocket speed 1', 'assets/icons/research/rocket-speed.png', false, 
+                [
+                    new ResearchCost(100, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(100, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(100, GameData.resourcesByCode.get('SP4')),
+                ], 3000),
+            new ResearchItem('ROCKSPE2', 'Rocket speed 2', 'assets/icons/research/rocket-speed.png', false, 
+                [
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP4')),
+                ], 6000),
+            new ResearchItem('ROCKSPE3', 'Rocket speed 3', 'assets/icons/research/rocket-speed.png', false, 
+                [
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP3')),
+                    new ResearchCost(200, GameData.resourcesByCode.get('SP4')),
+                ], 12000),
+            new ResearchItem('ROCKSPE4', 'Rocket speed 4', 'assets/icons/research/rocket-speed.png', false, 
+                [
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP3')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP4')),
+                ], 18000),
+            new ResearchItem('ROCKSPE5', 'Rocket speed 5', 'assets/icons/research/rocket-speed.png', false, 
+                [
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP3')),
+                    new ResearchCost(300, GameData.resourcesByCode.get('SP4')),
+                ], 18000),
+            new ResearchItem('ROCKSIL', 'Rocket silo', 'assets/icons/research/rocket-silo.png', false, 
+                [
+                    new ResearchCost(1000, GameData.resourcesByCode.get('SP1')), 
+                    new ResearchCost(1000, GameData.resourcesByCode.get('SP2')),
+                    new ResearchCost(1000, GameData.resourcesByCode.get('SP3')),
+                    new ResearchCost(1000, GameData.resourcesByCode.get('SP4')),
+                    new ResearchCost(1000, GameData.resourcesByCode.get('SP5')),
+                    new ResearchCost(1000, GameData.resourcesByCode.get('SP6')),
+                ], 60000),
         ];
 
         GameData.researchItemsByCode = new Map(GameData.researchItems.map((item) : [string, ResearchItem] => [item.code, item]));
 
+        // Research tree
         GameData.researchItemsByCode.get('AUTOMAT').dependsOn = [];
+        GameData.researchItemsByCode.get('MILI').dependsOn = [];
+        GameData.researchItemsByCode.get('MILI2').dependsOn = [GameData.researchItemsByCode.get('MILI'), GameData.researchItemsByCode.get('STEELPROC')];
         GameData.researchItemsByCode.get('OPTICS').dependsOn = [];
         GameData.researchItemsByCode.get('STEELPROC').dependsOn = [];
+        GameData.researchItemsByCode.get('FLAM').dependsOn = [GameData.researchItemsByCode.get('OILGATH')];
+        GameData.researchItemsByCode.get('EXPL').dependsOn = [GameData.researchItemsByCode.get('SULFURPROC')]
+        GameData.researchItemsByCode.get('ADVCMP').dependsOn = [GameData.researchItemsByCode.get('STEELPROC')];
+        GameData.researchItemsByCode.get('ADVCMP2').dependsOn = [GameData.researchItemsByCode.get('ADVCMP'), GameData.researchItemsByCode.get('ADVCELEC')];
+        GameData.researchItemsByCode.get('CONCRETE').dependsOn = [GameData.researchItemsByCode.get('ADVCMP')];
         GameData.researchItemsByCode.get('ELECTR').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT')];
         GameData.researchItemsByCode.get('AUTOMAT2').dependsOn = [GameData.researchItemsByCode.get('ELECTR')];
         GameData.researchItemsByCode.get('ENGINE').dependsOn = [GameData.researchItemsByCode.get('STEELPROC'), GameData.researchItemsByCode.get('AUTOMAT2')];
         GameData.researchItemsByCode.get('OILGATH').dependsOn = [GameData.researchItemsByCode.get('STEELPROC')];
+        GameData.researchItemsByCode.get('OILPROC').dependsOn = [GameData.researchItemsByCode.get('OILGATH')];
         GameData.researchItemsByCode.get('PLASTICS').dependsOn = [GameData.researchItemsByCode.get('OILGATH')];
         GameData.researchItemsByCode.get('ADVCELEC').dependsOn = [GameData.researchItemsByCode.get('ELECTR'), GameData.researchItemsByCode.get('PLASTICS')];
+        GameData.researchItemsByCode.get('ADVCELEC2').dependsOn = [GameData.researchItemsByCode.get('ADVCELEC')];
         GameData.researchItemsByCode.get('ELECENGINE').dependsOn = [GameData.researchItemsByCode.get('ADVCELEC'), GameData.researchItemsByCode.get('ENGINE')];
         GameData.researchItemsByCode.get('MODULES').dependsOn = [GameData.researchItemsByCode.get('ADVCELEC')];
         GameData.researchItemsByCode.get('SMODULES').dependsOn = [GameData.researchItemsByCode.get('MODULES')];
+        GameData.researchItemsByCode.get('SMODULES2').dependsOn = [GameData.researchItemsByCode.get('SMODULES')];
+        GameData.researchItemsByCode.get('SMODULES3').dependsOn = [GameData.researchItemsByCode.get('SMODULES2')];
+        GameData.researchItemsByCode.get('PMODULES').dependsOn = [GameData.researchItemsByCode.get('MODULES')];
+        GameData.researchItemsByCode.get('PMODULES2').dependsOn = [GameData.researchItemsByCode.get('PMODULES')];
+        GameData.researchItemsByCode.get('PMODULES3').dependsOn = [GameData.researchItemsByCode.get('PMODULES2')];
         GameData.researchItemsByCode.get('AUTOMAT3').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT2'), GameData.researchItemsByCode.get('SMODULES')];
-        GameData.researchItemsByCode.get('AUTOMAT3').dependsOn = [GameData.researchItemsByCode.get('AUTOMAT2'), GameData.researchItemsByCode.get('SMODULES')];
-        GameData.researchItemsByCode.get('SOLENERG').dependsOn = [GameData.researchItemsByCode.get('ELECTR'), GameData.researchItemsByCode.get('OPTICS'), GameData.researchItemsByCode.get('STEELPROC')];
+        GameData.researchItemsByCode.get('SOLENERG').dependsOn = [GameData.researchItemsByCode.get('ELECTR'), GameData.researchItemsByCode.get('OPTICS'), 
+            GameData.researchItemsByCode.get('STEELPROC')];
         GameData.researchItemsByCode.get('SULFURPROC').dependsOn = [GameData.researchItemsByCode.get('OILGATH')];
         GameData.researchItemsByCode.get('BAT').dependsOn = [GameData.researchItemsByCode.get('SULFURPROC')];
-
-        /*GameData.researchItemsByCode.get('AUTOMAT').unlocks = [GameData.researchItemsByCode.get('ELECTR')];
-        GameData.researchItemsByCode.get('STEELPROC').unlocks = [GameData.researchItemsByCode.get('ENGINE')];
-        GameData.researchItemsByCode.get('ELECTR').unlocks = [GameData.researchItemsByCode.get('AUTOMAT2'), GameData.researchItemsByCode.get('ADVCELEC')];
-        GameData.researchItemsByCode.get('AUTOMAT2').unlocks = [GameData.researchItemsByCode.get('ENGINE')];
-        GameData.researchItemsByCode.get('ENGINE').unlocks = [];
-        GameData.researchItemsByCode.get('OILGATH').unlocks = [GameData.researchItemsByCode.get('PLASTICS')];
-        GameData.researchItemsByCode.get('PLASTICS').unlocks = [GameData.researchItemsByCode.get('ADVCELEC')];
-        GameData.researchItemsByCode.get('ADVCELEC').unlocks = [GameData.researchItemsByCode.get('ELECENGINE')];
-        GameData.researchItemsByCode.get('ELECENGINE').unlocks = [];*/
-
-
+        GameData.researchItemsByCode.get('ELECDIST').dependsOn = [GameData.researchItemsByCode.get('ELECTR'), GameData.researchItemsByCode.get('STEELPROC')];
+        GameData.researchItemsByCode.get('ELECACCU').dependsOn = [GameData.researchItemsByCode.get('ELECDIST'), GameData.researchItemsByCode.get('BAT')];
+        GameData.researchItemsByCode.get('ROCK').dependsOn = [GameData.researchItemsByCode.get('MILI2'), GameData.researchItemsByCode.get('EXPL'),
+            GameData.researchItemsByCode.get('FLAM'), GameData.researchItemsByCode.get('ELECTR')];
+        GameData.researchItemsByCode.get('ROCKSPE1').dependsOn = [GameData.researchItemsByCode.get('ROCK')];
+        GameData.researchItemsByCode.get('ROCKSPE2').dependsOn = [GameData.researchItemsByCode.get('ROCKSPE1')];
+        GameData.researchItemsByCode.get('ROCKSPE3').dependsOn = [GameData.researchItemsByCode.get('ROCKSPE2')];
+        GameData.researchItemsByCode.get('ROCKSPE4').dependsOn = [GameData.researchItemsByCode.get('ROCKSPE3')];
+        GameData.researchItemsByCode.get('ROCKSPE5').dependsOn = [GameData.researchItemsByCode.get('ROCKSPE4')];
+        GameData.researchItemsByCode.get('ROCKSIL').dependsOn = [GameData.researchItemsByCode.get('SMODULES3'), GameData.researchItemsByCode.get('PMODULES3'),
+            GameData.researchItemsByCode.get('ROCKSPE5'), GameData.researchItemsByCode.get('ADVCELEC2')];
+        
+        // Item unlocking.
         GameData.researchItemsByCode.get('AUTOMAT').unlocksBuild = [GameData.resourcesByCode.get('ASSM1')];
         GameData.researchItemsByCode.get('STEELPROC').unlocksBuild = [];
+        GameData.researchItemsByCode.get('MILI').unlocksBuild = [];
+        GameData.researchItemsByCode.get('TUR').unlocksBuild = [GameData.resourcesByCode.get('GUNTUR')];
+        GameData.researchItemsByCode.get('MILI2').unlocksBuild = [GameData.resourcesByCode.get('PRM'), GameData.resourcesByCode.get('GRE'),
+            GameData.resourcesByCode.get('SP4')];
+        GameData.researchItemsByCode.get('ADVCMP').unlocksBuild = [GameData.resourcesByCode.get('STEFUR')];
+        GameData.researchItemsByCode.get('ADVCMP2').unlocksBuild = [GameData.resourcesByCode.get('ELECFUR'), GameData.resourcesByCode.get('SP5')];
+        GameData.researchItemsByCode.get('CONCRETE').unlocksBuild = [GameData.resourcesByCode.get('CONC')];
         GameData.researchItemsByCode.get('AUTOMAT2').unlocksBuild = [GameData.resourcesByCode.get('ASSM2')];
         GameData.researchItemsByCode.get('ENGINE').unlocksBuild = [GameData.resourcesByCode.get('ENGU')];
-        GameData.researchItemsByCode.get('OILGATH').unlocksBuild = [GameData.resourcesByCode.get('PUMJ'), 
-            GameData.resourcesByCode.get('OILREF'), GameData.resourcesByCode.get('CHEMPLANT'), GameData.resourcesByCode.get('BOILPROC'), 
+        GameData.researchItemsByCode.get('OILGATH').unlocksBuild = [GameData.resourcesByCode.get('PUMPJ'), 
+            GameData.resourcesByCode.get('OILREF'), GameData.resourcesByCode.get('CHEMPLANT'), GameData.resourcesByCode.get('SOLFUEL'),
+            GameData.resourcesByCode.get('BOILPROC'),
             GameData.resourcesByCode.get('SOLFUHO'), GameData.resourcesByCode.get('SOLFULO'), GameData.resourcesByCode.get('SOLFUPG'), 
-            GameData.resourcesByCode.get('LUB')];
+            GameData.resourcesByCode.get('LUB'), GameData.resourcesByCode.get('CRUDO'), GameData.resourcesByCode.get('HOIL'), 
+            GameData.resourcesByCode.get('LOIL'), GameData.resourcesByCode.get('PGAS')];
+        GameData.researchItemsByCode.get('OILPROC').unlocksBuild = [GameData.resourcesByCode.get('ADVOILPROC'),
+            GameData.resourcesByCode.get('HOILCRACK'), GameData.resourcesByCode.get('LOILCRACK')];
         GameData.researchItemsByCode.get('PLASTICS').unlocksBuild = [GameData.resourcesByCode.get('PLASBAR')];
         GameData.researchItemsByCode.get('ADVCELEC').unlocksBuild = [GameData.resourcesByCode.get('ADVC'), GameData.resourcesByCode.get('SP3')];
+        GameData.researchItemsByCode.get('ADVCELEC2').unlocksBuild = [GameData.resourcesByCode.get('PU'), GameData.resourcesByCode.get('SP6')];
         GameData.researchItemsByCode.get('ELECENGINE').unlocksBuild = [GameData.resourcesByCode.get('EENGU')];
         GameData.researchItemsByCode.get('MODULES').unlocksBuild = [];
         GameData.researchItemsByCode.get('SMODULES').unlocksBuild = [GameData.resourcesByCode.get('SM1')];
+        GameData.researchItemsByCode.get('SMODULES2').unlocksBuild = [GameData.resourcesByCode.get('SM2')];
+        GameData.researchItemsByCode.get('SMODULES3').unlocksBuild = [GameData.resourcesByCode.get('SM3')];
+        GameData.researchItemsByCode.get('PMODULES').unlocksBuild = [GameData.resourcesByCode.get('PM1')];
+        GameData.researchItemsByCode.get('PMODULES2').unlocksBuild = [GameData.resourcesByCode.get('PM2')];
+        GameData.researchItemsByCode.get('PMODULES3').unlocksBuild = [GameData.resourcesByCode.get('PM3')];
         GameData.researchItemsByCode.get('AUTOMAT3').unlocksBuild = [GameData.resourcesByCode.get('ASSM3')];
         GameData.researchItemsByCode.get('SOLENERG').unlocksBuild = [GameData.resourcesByCode.get('SOLPAN')];
         GameData.researchItemsByCode.get('SULFURPROC').unlocksBuild = [GameData.resourcesByCode.get('SULF'), GameData.resourcesByCode.get('SULFAC')];
         GameData.researchItemsByCode.get('BAT').unlocksBuild = [GameData.resourcesByCode.get('BAT')];
+        GameData.researchItemsByCode.get('ELECDIST').unlocksBuild = [];
+        GameData.researchItemsByCode.get('ELECACCU').unlocksBuild = [GameData.resourcesByCode.get('ACCU')]
+        GameData.researchItemsByCode.get('ROCKSIL').unlocksBuild = [GameData.resourcesByCode.get('RS'), GameData.resourcesByCode.get('LDS'), 
+            GameData.resourcesByCode.get('ROCFUEL'), GameData.resourcesByCode.get('RCU'), GameData.resourcesByCode.get('RP'), 
+            GameData.resourcesByCode.get('SAT'), GameData.resourcesByCode.get('SP7')]
 
         // FIXME
         GameData.resourcesByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
+        GameData.craftingsByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
+        GameData.resourcesByCode.get('GUNTUR').unlockedBy = GameData.researchItemsByCode.get('TUR');
+        GameData.resourcesByCode.get('PRM').unlockedBy = GameData.researchItemsByCode.get('MILI2');
+        GameData.resourcesByCode.get('GRE').unlockedBy = GameData.researchItemsByCode.get('MILI2');
+        GameData.resourcesByCode.get('SP4').unlockedBy = GameData.researchItemsByCode.get('MILI2');
+        GameData.resourcesByCode.get('STEFUR').unlockedBy = GameData.researchItemsByCode.get('ADVCMP');
+        GameData.craftingsByCode.get('STEFUR').unlockedBy = GameData.researchItemsByCode.get('ADVCMP');
+        GameData.resourcesByCode.get('CONC').unlockedBy = GameData.researchItemsByCode.get('CONCRETE');
         GameData.resourcesByCode.get('ASSM2').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT2');
+        GameData.craftingsByCode.get('ASSM2').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT2');
+        GameData.resourcesByCode.get('ASSM3').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT3');
+        GameData.craftingsByCode.get('ASSM3').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT3');
         GameData.resourcesByCode.get('ENGU').unlockedBy = GameData.researchItemsByCode.get('ENGINE');
+        GameData.resourcesByCode.get('EENGU').unlockedBy = GameData.researchItemsByCode.get('ELECENGINE');
+        GameData.resourcesByCode.get('PUMPJ').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.craftingsByCode.get('PUMPJ').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('OILREF').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('CHEMPLANT').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('BOILPROC').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('SOLFUHO').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('SOLFULO').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('SOLFUPG').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('SOLFUEL').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('LUB').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('CRUDO').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('HOIL').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('LOIL').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('PGAS').unlockedBy = GameData.researchItemsByCode.get('OILGATH');
+        GameData.resourcesByCode.get('SULF').unlockedBy = GameData.researchItemsByCode.get('SULFURPROC');
+        GameData.resourcesByCode.get('SULFAC').unlockedBy = GameData.researchItemsByCode.get('SULFURPROC');
+        GameData.resourcesByCode.get('BAT').unlockedBy = GameData.researchItemsByCode.get('BAT');
+        GameData.resourcesByCode.get('PLASBAR').unlockedBy = GameData.researchItemsByCode.get('PLASTICS');
+        GameData.resourcesByCode.get('ADVC').unlockedBy = GameData.researchItemsByCode.get('ADVCELEC');
+        GameData.resourcesByCode.get('SP3').unlockedBy = GameData.researchItemsByCode.get('ADVCELEC');
+        GameData.resourcesByCode.get('PU').unlockedBy = GameData.researchItemsByCode.get('ADVCELEC2');
+        GameData.resourcesByCode.get('SP6').unlockedBy = GameData.researchItemsByCode.get('ADVCELEC2');
+        GameData.resourcesByCode.get('ELECFUR').unlockedBy = GameData.researchItemsByCode.get('ADVCMP2');
+        GameData.craftingsByCode.get('ELECFUR').unlockedBy = GameData.researchItemsByCode.get('ADVCMP2');
+        GameData.resourcesByCode.get('SP5').unlockedBy = GameData.researchItemsByCode.get('ADVCMP2');
+        GameData.resourcesByCode.get('SM1').unlockedBy = GameData.researchItemsByCode.get('SMODULES');
+        GameData.resourcesByCode.get('SM2').unlockedBy = GameData.researchItemsByCode.get('SMODULES2');
+        GameData.resourcesByCode.get('SM3').unlockedBy = GameData.researchItemsByCode.get('SMODULES3');
+        GameData.resourcesByCode.get('PM1').unlockedBy = GameData.researchItemsByCode.get('PMODULES');
+        GameData.resourcesByCode.get('PM2').unlockedBy = GameData.researchItemsByCode.get('PMODULES2');
+        GameData.resourcesByCode.get('PM3').unlockedBy = GameData.researchItemsByCode.get('PMODULES3');
+        GameData.resourcesByCode.get('ACCU').unlockedBy = GameData.researchItemsByCode.get('ELECACCU');
+        GameData.resourcesByCode.get('SOLPAN').unlockedBy = GameData.researchItemsByCode.get('SOLENERG');
+        GameData.craftingsByCode.get('SOLPAN').unlockedBy = GameData.researchItemsByCode.get('SOLENERG');
+        GameData.resourcesByCode.get('RS').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('LDS').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('ROCFUEL').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('RCU').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('RP').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('SAT').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('SP7').unlockedBy = GameData.researchItemsByCode.get('ROCKSIL');
+        GameData.resourcesByCode.get('ADVOILPROC').unlockedBy = GameData.researchItemsByCode.get('OILPROC');
+        GameData.resourcesByCode.get('HOILCRACK').unlockedBy = GameData.researchItemsByCode.get('OILPROC');
+        GameData.resourcesByCode.get('LOILCRACK').unlockedBy = GameData.researchItemsByCode.get('OILPROC');
     }
 
     public static initResourceDef(): void {
@@ -115,6 +378,7 @@ export class GameData {
             new ResourceItem('STO', 'Stone', 'assets/icons/resources/stone.png', true, [], 1, [], [], ["MINABLE", 'STOCKABLE']),
             new ResourceItem('CONC', 'Concrete', 'assets/icons/concrete.png', false, [], 1, [], [], ["CRAFTABLE", 'STOCKABLE']),
             new ResourceItem('STOFUR', 'Stone furnace', 'assets/icons/stone-furnace.png', true, [], 0.5, [], [], ["CRAFTABLE", 'STOCKABLE']),
+            new ResourceItem('STEFUR', 'Steel furnace', 'assets/icons/steel-furnace.png', false, [], 0, [], [], []),
             new ResourceItem('ELECFUR', 'Electric furnace', 'assets/icons/electric-furnace.png', true, [], 5, [], [], ["CRAFTABLE", 'STOCKABLE']),
             new ResourceItem('IROPL', 'Iron plate', 'assets/icons/iron-plate.png', true, [], 3.5, [], [], ["SMELTABLE", 'STOCKABLE']),
             new ResourceItem('COPPL', 'Copper plate', 'assets/icons/copper-plate.png', true, [], 3.5, [], [], ["SMELTABLE", 'STOCKABLE']),
@@ -133,14 +397,17 @@ export class GameData {
             new ResourceItem('ASSM1', 'Assembling machine 1', 'assets/icons/assembling-machine-1.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM2', 'Assembling machine 2', 'assets/icons/assembling-machine-2.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('ASSM3', 'Assembling machine 3', 'assets/icons/assembling-machine-3.png', true, [], 0.5, [], [], ['CRAFTABLE', 'STOCKABLE']),
-            new ResourceItem('PUMJ', 'Pumpjack', 'assets/icons/pumpjack.png', false, [], 0, [], [], []),
+            new ResourceItem('PUMPJ', 'Pumpjack', 'assets/icons/pumpjack.png', false, [], 0, [], [], []),
             new ResourceItem('OILREF', 'Oil refinery', 'assets/icons/oil-refinery.png', false, [], 0, [], [], []),
             new ResourceItem('CHEMPLANT', 'Chemical plant', 'assets/icons/chemical-plant.png', false, [], 0, [], [], []),
             new ResourceItem('ADVC', 'Advanced circuit', 'assets/icons/advanced-circuit.png', true, [], 6, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('SOLPAN', 'Solar panel', 'assets/icons/solar-panel.png', true, [], 10, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('SM1', 'Speed module 1', 'assets/icons/speed-module.png', true, [], 15, [], [], ['CRAFTABLE', 'STOCKABLE']),
-            //new ResourceItem('SM2', 'Speed module 2', 'assets/icons/speed-module-2.png', true, [], 10, [], [], ['CRAFTABLE', 'STOCKABLE']),
-            //new ResourceItem('SM3', 'Speed module 3', 'assets/icons/speed-module-3.png', true, [], 10, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('SM2', 'Speed module 2', 'assets/icons/speed-module-2.png', true, [], 30, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('SM3', 'Speed module 3', 'assets/icons/speed-module-3.png', true, [], 60, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('PM1', 'Productivity module 1', 'assets/icons/productivity-module.png', true, [], 15, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('PM2', 'Productivity module 2', 'assets/icons/productivity-module-2.png', true, [], 30, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('PM3', 'Productivity module 3', 'assets/icons/productivity-module-3.png', true, [], 60, [], [], ['CRAFTABLE', 'STOCKABLE']),
             new ResourceItem('BOILPROC', 'Basic oil processing', 'assets/icons/basic-oil-processing.png', false, [], 0, [], [], ["SMELTABLE"]),
             new ResourceItem('ADVOILPROC', 'Advanced oil processing', 'assets/icons/advanced-oil-processing.png', false, [], 0, [], [], ["SMELTABLE"]),
             new ResourceItem('HOILCRACK', 'Heavy oil cracking', 'assets/icons/heavy-oil-cracking.png', false, [], 0, [], [], ["SMELTABLE"]),
@@ -176,7 +443,7 @@ export class GameData {
             new ResourceItem('SP5', 'Production science pack', 'assets/icons/production-science-pack.png', true, [], 7, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
             new ResourceItem('SP6', 'High tech science pack', 'assets/icons/high-tech-science-pack.png', true, [], 7, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
             new ResourceItem('SP7', 'Space science pack', 'assets/icons/space-science-pack.png', false, [], 0, [], [], ['STOCKABLE', 'SCIENCE_PACK']),
-            //new ResourceItem('RS', 'Rocket silo', 'assets/icons/rocket-silo.png', false, [], 0, [], [], ['CRAFTABLE', 'STOCKABLE']),
+            new ResourceItem('RS', 'Rocket silo', 'assets/icons/rocket-silo.png', false, [], 0, [], [], []),
         ];  
 
         GameData.resourcesByCode =  new Map(GameData.resources.map((resource) : [string, ResourceItem] => [resource.code, resource]));
@@ -514,6 +781,68 @@ export class GameData {
                 new Consumption(0.415, GameData.resourcesByCode.get('EC'))
             ])
         ];
+        GameData.resourcesByCode.get('SM2').craftedWith = [
+            new Recipe([new ProductionValue(0.025, GameData.resourcesByCode.get('SM2'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.125, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.125, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.1, GameData.resourcesByCode.get('SM1'))
+            ]),
+            new Recipe([new ProductionValue(0.0415, GameData.resourcesByCode.get('SM2'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.2085, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.2085, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.165, GameData.resourcesByCode.get('SM1'))
+            ])
+        ];
+        GameData.resourcesByCode.get('SM3').craftedWith = [
+            new Recipe([new ProductionValue(0.0125, GameData.resourcesByCode.get('SM3'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.0625, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.0625, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.0625, GameData.resourcesByCode.get('SM2'))
+            ]),
+            new Recipe([new ProductionValue(0.02085, GameData.resourcesByCode.get('SM3'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.105, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.105, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.105, GameData.resourcesByCode.get('SM2'))
+            ])
+        ];
+        GameData.resourcesByCode.get('PM1').craftedWith = [
+            new Recipe([new ProductionValue(0.035, GameData.resourcesByCode.get('PM1'))], GameData.craftingsByCode.get('ASSM1'), [
+                new Consumption(0.165, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.165, GameData.resourcesByCode.get('EC'))
+            ]), 
+            new Recipe([new ProductionValue(0.05, GameData.resourcesByCode.get('PM1'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.25, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.25, GameData.resourcesByCode.get('EC'))
+            ]),
+            new Recipe([new ProductionValue(0.085, GameData.resourcesByCode.get('PM1'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.415, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.415, GameData.resourcesByCode.get('EC'))
+            ])
+        ];
+        GameData.resourcesByCode.get('PM2').craftedWith = [
+            new Recipe([new ProductionValue(0.025, GameData.resourcesByCode.get('PM2'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.125, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.125, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.1, GameData.resourcesByCode.get('PM1'))
+            ]),
+            new Recipe([new ProductionValue(0.0415, GameData.resourcesByCode.get('PM2'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.2085, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.2085, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.165, GameData.resourcesByCode.get('PM1'))
+            ])
+        ];
+        GameData.resourcesByCode.get('PM3').craftedWith = [
+            new Recipe([new ProductionValue(0.0125, GameData.resourcesByCode.get('PM3'))], GameData.craftingsByCode.get('ASSM2'), [
+                new Consumption(0.0625, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.0625, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.0625, GameData.resourcesByCode.get('PM2'))
+            ]),
+            new Recipe([new ProductionValue(0.02085, GameData.resourcesByCode.get('PM3'))], GameData.craftingsByCode.get('ASSM3'), [
+                new Consumption(0.105, GameData.resourcesByCode.get('ADVC')),
+                new Consumption(0.105, GameData.resourcesByCode.get('PU')),
+                new Consumption(0.105, GameData.resourcesByCode.get('PM2'))
+            ])
+        ];
         GameData.resourcesByCode.get('RCU').craftedWith = [
             new Recipe([new ProductionValue(0.0165, GameData.resourcesByCode.get('RCU'))], GameData.craftingsByCode.get('ASSM1'), [
                 new Consumption(0.0165, GameData.resourcesByCode.get('PU')),
@@ -772,6 +1101,8 @@ export class GameData {
         GameData.resourcesByCode.get('CC').buildCost = [new BuildCost(GameData.resourcesByCode.get('COPPL'), 0.5)];
         GameData.resourcesByCode.get('EC').buildCost = [new BuildCost(GameData.resourcesByCode.get('IROPL'), 1), 
             new BuildCost(GameData.resourcesByCode.get('CC'), 3)];
+        GameData.resourcesByCode.get('EMD').buildCost = [new BuildCost(GameData.resourcesByCode.get('EC'), 3), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 5), new BuildCost(GameData.resourcesByCode.get('IROPL'), 10)];
         GameData.resourcesByCode.get('STOFUR').buildCost = [new BuildCost(GameData.resourcesByCode.get('STO'), 5)];
         GameData.resourcesByCode.get('ELECFUR').buildCost = [new BuildCost(GameData.resourcesByCode.get('ADVC'), 5),
             new BuildCost(GameData.resourcesByCode.get('STEPL'), 10), new BuildCost(GameData.resourcesByCode.get('STOBR'), 10)];
@@ -791,6 +1122,20 @@ export class GameData {
             new BuildCost(GameData.resourcesByCode.get('EC'), 15), new BuildCost(GameData.resourcesByCode.get('STEPL'), 5)];
         GameData.resourcesByCode.get('SM1').buildCost = [new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
             new BuildCost(GameData.resourcesByCode.get('EC'), 5)];
+        GameData.resourcesByCode.get('SM2').buildCost = [new BuildCost(GameData.resourcesByCode.get('SM1'), 4), 
+            new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('PU'), 5)];
+        GameData.resourcesByCode.get('SM3').buildCost = [new BuildCost(GameData.resourcesByCode.get('SM2'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('PU'), 5)];
+        GameData.resourcesByCode.get('PM1').buildCost = [new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('EC'), 5)];
+        GameData.resourcesByCode.get('PM2').buildCost = [new BuildCost(GameData.resourcesByCode.get('PM1'), 4), 
+            new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('PU'), 5)];
+        GameData.resourcesByCode.get('PM3').buildCost = [new BuildCost(GameData.resourcesByCode.get('PM2'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('ADVC'), 5), 
+            new BuildCost(GameData.resourcesByCode.get('PU'), 5)];
         GameData.resourcesByCode.get('ROCFUEL').buildCost = [new BuildCost(GameData.resourcesByCode.get('SOLFUEL'), 10)];
         GameData.resourcesByCode.get('ENGU').buildCost = [new BuildCost(GameData.resourcesByCode.get('IGW'), 1), 
             new BuildCost(GameData.resourcesByCode.get('PIPE'), 2), new BuildCost(GameData.resourcesByCode.get('STEPL'), 1)];

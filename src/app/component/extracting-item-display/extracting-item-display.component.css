@@ -35,11 +35,11 @@
     margin-bottom: 3px;
 }
 
-.recipe .ingredient .qty {
+.qty {
     font-weight: bold;
 }
 
-.recipe .ingredient .not-enougth {
+.not-enougth {
     color: red;
     opacity: 0.85;
 }

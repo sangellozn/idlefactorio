@@ -27,6 +27,11 @@
               <span class="resource"><img src="{{cons.resource.icon}}" title="{{cons.resource.name}}" height="32" width="32" /></span>
             </div>
           </div>
+          <div *ngIf="productionQty.recipe.craftingItem.unlockedBy !== null && !productionQty.recipe.craftingItem.unlockedBy.isUnlocked">
+            <div class="separator"></div>
+            <h6>Need tech</h6>
+            <span class="qty not-enougth">{{productionQty.recipe.craftingItem.unlockedBy.name}}</span>
+          </div>
         </div>
       </ng-template>
       <img src="{{productionQty.recipe.craftingItem.icon}}" title="{{productionQty.recipe.craftingItem.name}}" 

@@ -120,19 +120,19 @@ export class Game {
     }
 
     public getStockInfos():StockInfo[] {
-        return Array.from(this.stocks.values());
+        return Array.from(this.stocks.values()).filter((si) => si.resource.unlockedBy === null || si.resource.unlockedBy.isUnlocked);
     }
 
     public getExtractingItems():ProductionInfo[] {
-        return Array.from(this.extractingItems.values());
+        return Array.from(this.extractingItems.values()).filter((pi) => pi.resource.unlockedBy === null || pi.resource.unlockedBy.isUnlocked);
     }
 
     public getSmeltingItems():ProductionInfo[] {
-        return Array.from(this.smeltingItems.values());
+        return Array.from(this.smeltingItems.values()).filter((pi) => pi.resource.unlockedBy === null || pi.resource.unlockedBy.isUnlocked);
     }
 
     public getCraftingItems():ProductionInfo[] {
-        return Array.from(this.craftingItems.values());
+        return Array.from(this.craftingItems.values()).filter((pi) => pi.resource.unlockedBy === null || pi.resource.unlockedBy.isUnlocked);
     }
 
     public getElectricityItem():ProductionInfo {
@@ -144,7 +144,9 @@ export class Game {
     }
 
     public getSciencePackItems(): StockInfo[] {
-        return Array.from(this.stocks.values()).filter((st) => st.resource.category.includes('SCIENCE_PACK'));
+        return Array.from(this.stocks.values())
+            .filter((st) => st.resource.category.includes('SCIENCE_PACK'))
+            .filter((st) => st.resource.unlockedBy === null || st.resource.unlockedBy.isUnlocked);
     }
 
     public increaseStock(resource:ResourceItem, qty:number):void {
@@ -241,9 +243,25 @@ export class Game {
                 this.electricityItem = productionInfo;
             }
         }
+
+        for (let search of GameData.researchItems) {
+            if (savedGame.searchProgress[search.code]) {
+                search.isUnlocked = savedGame.searchProgress[search.code].unlocked;
+                search.searchProgression = savedGame.searchProgress[search.code].searchPro;
+                search.searching = savedGame.searchProgress[search.code].searching;
+
+                if (search.searching) {
+                    this.resumeSearch(search);
+                }
+            }
+        }
     }
 
     public canBuild(item:BuildableItem):boolean {
+        if (item.unlockedBy !== null && !item.unlockedBy.isUnlocked) {
+            return false;
+        }
+
         for (let buildCost of item.buildCost) {
             if (!this.hasEnougthStock(buildCost.resource, buildCost.qty)) {
                 return false;
@@ -430,6 +448,10 @@ export class Game {
             this.decreaseStock(resourceCost.resource, resourceCost.qty);
         }
 
+        this.launchSearch(research);
+    }
+
+    private launchSearch(research:ResearchItem): void {
         this.searchIsRunning = true;
         research.searching = true;
 
@@ -445,6 +467,10 @@ export class Game {
                 research.searchProgression += progresStep;
             }
         }, 1000);
+    }
+
+    public resumeSearch(research:ResearchItem): void {
+        this.launchSearch(research);
     }
 
 }
