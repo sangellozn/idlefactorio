@@ -399,7 +399,7 @@ export class Game {
     }
 
     public getBonusValue(item:ResourceItem): number {
-        if (this.bonusItems.get(item.code) === 0) {
+        if (this.bonusItems.get(item.code) === undefined || this.bonusItems.get(item.code) === 0) {
             return 0;
         }
         return Math.pow(Game.maxBonusPercent, 1 - (1 / this.bonusItems.get(item.code)));

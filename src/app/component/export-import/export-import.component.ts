@@ -9,9 +9,9 @@ import { Game } from '../../bean/game';
 })
 export class ExportImportComponent implements OnInit {
 
-  private exportSave:string;
-  private importSave:string;
-  private importFailed:boolean;
+  public exportSave:string;
+  public importSave:string;
+  public importFailed:boolean;
 
   constructor() {
     this.importFailed = false;
