@@ -306,7 +306,6 @@ export class GameData {
             GameData.resourcesByCode.get('ROCFUEL'), GameData.resourcesByCode.get('RCU'), GameData.resourcesByCode.get('RP'), 
             GameData.resourcesByCode.get('SAT'), GameData.resourcesByCode.get('SP7')]
 
-        // FIXME
         GameData.resourcesByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
         GameData.craftingsByCode.get('ASSM1').unlockedBy = GameData.researchItemsByCode.get('AUTOMAT');
         GameData.resourcesByCode.get('GUNTUR').unlockedBy = GameData.researchItemsByCode.get('TUR');
@@ -444,6 +443,7 @@ export class GameData {
             new ResourceItem('SP6', 'High tech science pack', 'assets/icons/high-tech-science-pack.png', true, [], 7, [], [], ['CRAFTABLE', 'STOCKABLE', 'SCIENCE_PACK']),
             new ResourceItem('SP7', 'Space science pack', 'assets/icons/space-science-pack.png', false, [], 0, [], [], ['STOCKABLE', 'SCIENCE_PACK']),
             new ResourceItem('RS', 'Rocket silo', 'assets/icons/rocket-silo.png', false, [], 0, [], [], []),
+            new ResourceItem('LAB', 'Lab', 'assets/icons/lab.png', true, [], 2, [], [], ['STOCKABLE', 'BONUS'], null, 'Speed up research'),
         ];  
 
         GameData.resourcesByCode =  new Map(GameData.resources.map((resource) : [string, ResourceItem] => [resource.code, resource]));
@@ -1177,6 +1177,8 @@ export class GameData {
         GameData.resourcesByCode.get('SP6').buildCost = [new BuildCost(GameData.resourcesByCode.get('BAT'), 1), 
             new BuildCost(GameData.resourcesByCode.get('CC'), 30), new BuildCost(GameData.resourcesByCode.get('PU'), 3),
             new BuildCost(GameData.resourcesByCode.get('SM1'), 1)];
+        GameData.resourcesByCode.get('LAB').buildCost = [new BuildCost(GameData.resourcesByCode.get('EC'), 10), 
+            new BuildCost(GameData.resourcesByCode.get('IGW'), 10), new BuildCost(GameData.resourcesByCode.get('TB'), 4)];
 
         // Hand crafting costs.
         GameData.resourcesByCode.get('IROPL').handCraftCost = [new BuildCost(GameData.resourcesByCode.get('COAL'), 3.5)];

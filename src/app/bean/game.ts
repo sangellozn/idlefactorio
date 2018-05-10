@@ -18,6 +18,8 @@ export class Game {
 
     public static saveInterval = 60000;
 
+    public static maxBonusPercent = 50;
+
     private static localStorageKey = 'idlefactorio';
 
     private gameLoopIntervalId;
@@ -32,6 +34,8 @@ export class Game {
     private smeltingItems: Map<string, ProductionInfo>;
     // Crafting items that produce resources.
     private craftingItems: Map<string, ProductionInfo>;
+    // Bonus items number.    
+    private bonusItems: Map<string, number>;
 
     private electricityItem: ProductionInfo;
 
@@ -43,8 +47,8 @@ export class Game {
     public init():void {
         if (!this.load()) {
             this.initEmptyGame();
-            this.save();
         }
+        this.save();
         this.gameLoopIntervalId = window.setInterval(() => {this.gameLoop()}, Game.roundDuration);
         this.gameSaveIntervalId = window.setInterval(() => {this.save()}, Game.saveInterval);
     }
@@ -90,6 +94,7 @@ export class Game {
 
         const elec = GameData.resourcesByCode.get('ELEC');
         this.electricityItem = new ProductionInfo(elec, elec.craftedWith.map((recipe) => new ProductionQty(0, recipe)));
+        this.bonusItems = new Map();
     }
 
     public gameLoop(): void {
@@ -99,6 +104,13 @@ export class Game {
                 value.computeStockValue();
             }
         });
+    }
+
+    private flashforward(ffseconds:number): void {
+        // Increasing productions during absence.
+        for (let stockInfo of this.getStockInfos()) {
+            this.increaseStock(stockInfo.resource, stockInfo.producing * ffseconds);
+        }
     }
 
     public importSavedGame(importedSave:string): void {
@@ -147,6 +159,10 @@ export class Game {
         return Array.from(this.stocks.values())
             .filter((st) => st.resource.category.includes('SCIENCE_PACK'))
             .filter((st) => st.resource.unlockedBy === null || st.resource.unlockedBy.isUnlocked);
+    }
+
+    public getBonusItems(): ResourceItem[] {
+        return GameData.resources.filter((item) => item.category.includes('BONUS'));
     }
 
     public increaseStock(resource:ResourceItem, qty:number):void {
@@ -244,17 +260,40 @@ export class Game {
             }
         }
 
+        const now = new Date();
+        const ffseconds = (now.getTime() - new Date(savedGame.createdAt).getTime()) / 1000;
+
         for (let search of GameData.researchItems) {
             if (savedGame.searchProgress[search.code]) {
                 search.isUnlocked = savedGame.searchProgress[search.code].unlocked;
                 search.searchProgression = savedGame.searchProgress[search.code].searchPro;
                 search.searching = savedGame.searchProgress[search.code].searching;
-
+                
                 if (search.searching) {
-                    this.resumeSearch(search);
+                    // Checking if the search is done during abscence.
+                    const timeRemaining = search.duration - (search.duration * (search.searchProgression / 100));
+
+                    if (timeRemaining < ffseconds) {
+                        search.isUnlocked = true;
+                        search.searching = false;
+                        search.searchProgression = 100;
+                    } else {
+                        // Compute
+                        search.searchProgression += (ffseconds / search.duration * 100);
+                        this.resumeSearch(search);
+                    }
+
                 }
             }
         }
+
+        this.bonusItems = new Map();
+        // Loading bonus
+        for (let bonus of this.getBonusItems()) {
+            this.bonusItems.set(bonus.code, this.stocks.get(bonus.code).stock);
+        }
+
+        this.flashforward(ffseconds);
     }
 
     public canBuild(item:BuildableItem):boolean {
@@ -349,6 +388,21 @@ export class Game {
 
     public pickupResourceItem(item:ResourceItem): void {
         this.increaseStock(item, 1);
+
+        if (item.category.includes('BONUS')) {
+            this.bonusItems.set(item.code, this.bonusItems.get(item.code) + 1);
+        }
+    }
+
+    public getLabBonusValue():number {
+        return this.getBonusValue(GameData.resourcesByCode.get('LAB'));
+    }
+
+    public getBonusValue(item:ResourceItem): number {
+        if (this.bonusItems.get(item.code) === 0) {
+            return 0;
+        }
+        return Math.pow(Game.maxBonusPercent, 1 - (1 / this.bonusItems.get(item.code)));
     }
 
     private craftBuildableItem(item: BuildableItem): void {

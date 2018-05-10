@@ -1,0 +1,17 @@
+.bonus-item-display {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background-color: #444;
+    margin: 2px;
+    width: 130px;
+}
+
+.resource {
+    text-align: center;
+}
+
+.bonus-value {
+    text-align: center;
+    font-weight: bold;
+}

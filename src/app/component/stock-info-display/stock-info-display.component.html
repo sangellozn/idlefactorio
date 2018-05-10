@@ -1,25 +1,25 @@
 <div class="stock-info-card">
   <div class="stock-info-card-data">
     <ng-template #recipe>
-        <h6>Crafting ({{resource.craftDuration}} sec)</h6>
-        <div class="recipe" *ngIf="resource.buildCost.length > 0">
-          <div class="ingredient" *ngFor="let buildCost of resource.buildCost">
-            <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(buildCost.resource, buildCost.qty)}">{{buildCost.qty}}</span>
-            <span class="resource"><img src="{{buildCost.resource.icon}}" title="{{buildCost.resource.name}}" /></span>
+      <h6>Crafting ({{resource.craftDuration}} sec)</h6>
+      <div class="recipe" *ngIf="resource.buildCost.length > 0">
+        <div class="ingredient" *ngFor="let buildCost of resource.buildCost">
+          <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(buildCost.resource, buildCost.qty)}">{{buildCost.qty}}</span>
+          <span class="resource"><img src="{{buildCost.resource.icon}}" title="{{buildCost.resource.name}}" /></span>
+        </div>
+      </div>
+      <div class="recipe" *ngIf="resource.buildCost.length === 0"><span class="ingredient"><span class="qty">N/A</span></span></div>
+      <div *ngIf="resource.handCraftCost.length > 0">
+        <div class="separator"></div>
+        <h6>Extra cost</h6>
+        <div class="recipe">
+          <div class="ingredient" *ngFor="let handCraftCost of resource.handCraftCost">
+            <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(handCraftCost.resource, handCraftCost.qty)}">{{handCraftCost.qty}}</span>
+            <span class="resource"><img src="{{handCraftCost.resource.icon}}" title="{{handCraftCost.resource.name}}" /></span>
           </div>
         </div>
-        <div class="recipe" *ngIf="resource.buildCost.length === 0"><span class="ingredient"><span class="qty">N/A</span></span></div>
-        <div *ngIf="resource.handCraftCost.length > 0">
-          <div class="separator"></div>
-          <h6>Extra cost</h6>
-          <div class="recipe">
-            <div class="ingredient" *ngFor="let handCraftCost of resource.handCraftCost">
-              <span class="qty" [ngClass]="{'not-enougth': !game.hasEnougthStock(handCraftCost.resource, handCraftCost.qty)}">{{handCraftCost.qty}}</span>
-              <span class="resource"><img src="{{handCraftCost.resource.icon}}" title="{{handCraftCost.resource.name}}" /></span>
-            </div>
-          </div>
-        </div>
-      </ng-template>
+      </div>
+    </ng-template>
     <img src="{{resource.icon}}" title="{{resource.name}}" 
       [ngbTooltip]="resource.buildCost.length > 0 ? recipe : null"
       placement="left"
@@ -30,7 +30,7 @@
   </div>
   <div class="counter">
     <div>
-      <span class="total">{{stock | number:'1.2-2'}}</span> 
+      <span class="total">{{stock | bigNumber}}</span> 
     </div>
     <div class="production">
       (<span class="producing">+{{producing | number:'1.2-2'}}</span> / <span class="consuming">-{{consuming | number:'1.2-2'}}</span> = 

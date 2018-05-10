@@ -1,0 +1,14 @@
+<div class="bonus-item-display">
+  <ng-template #bonusDescription>
+    <div>{{resource.bonusDescription}}</div>
+  </ng-template>
+  <div class="resource">
+      <img src="{{resource.icon}}" title="{{resource.name}}" 
+        [ngbTooltip]="bonusDescription"
+        placement="left"
+        height="32" width="32" />
+  </div>
+  <div class="bonus-value">
+    {{game.getBonusValue(resource) | number:'1.2-2'}}%
+  </div>
+</div>

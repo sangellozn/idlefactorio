@@ -1,7 +1,7 @@
 <div class="research-item">
   <ng-template #dependsOn>
     <h6>Search duration</h6>
-    <div>{{researchItem.duration}} sec</div>
+    <div>{{researchItem.duration | number:'1.0-0'}} sec</div>
     <div *ngIf="researchItem.dependsOn.length > 0">
       <div class="separator"></div>
       <h6>Requires</h6>

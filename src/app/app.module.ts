@@ -21,6 +21,9 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ResearchItemComponent } from './component/research-item/research-item.component';
 import { ExportImportComponent } from './component/export-import/export-import.component';
 import { FormsModule } from '@angular/forms';
+import { BigNumberPipe } from './pipe/big-number.pipe';
+import { BonusComponent } from './component/bonus/bonus.component';
+import { BonusItemDisplayComponent } from './component/bonus-item-display/bonus-item-display.component';
 
 
 @NgModule({
@@ -40,7 +43,10 @@ import { FormsModule } from '@angular/forms';
     CreditsComponent,
     NavBarComponent,
     ResearchItemComponent,
-    ExportImportComponent
+    ExportImportComponent,
+    BigNumberPipe,
+    BonusComponent,
+    BonusItemDisplayComponent
   ],
   imports: [
     BrowserModule,

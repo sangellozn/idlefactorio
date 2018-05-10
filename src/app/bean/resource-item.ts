@@ -16,7 +16,7 @@ export class ResourceItem extends BuildableItem {
 
     constructor(code: string, name: string, icon: string, handCrafted:boolean, 
         handCraftCost:BuildCost[], craftDuration:number, buildCost:BuildCost[], 
-        craftedWith:Recipe[], category:string[], unlockedBy:ResearchItem = null) {
+        craftedWith:Recipe[], category:string[], unlockedBy:ResearchItem = null, public bonusDescription:string = null) {
         super(buildCost, unlockedBy);
         this.code = code;
         this.name = name;

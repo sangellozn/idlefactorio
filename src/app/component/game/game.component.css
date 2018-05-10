@@ -1,11 +1,19 @@
-.extract-elec {
+.extract-elec-bonus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.extract-elec > div {
+.extract {
     width: 49%;
+}
+
+.elec {
+    width: 24%;
+}
+
+.bonus {
+    width: 24%;
 }
 
 .crafting-area {
