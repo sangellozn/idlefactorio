@@ -260,6 +260,12 @@ export class Game {
             }
         }
 
+        this.bonusItems = new Map();
+        // Loading bonus
+        for (let bonus of this.getBonusItems()) {
+            this.bonusItems.set(bonus.code, this.stocks.get(bonus.code).stock);
+        }
+
         const now = new Date();
         const ffseconds = (now.getTime() - new Date(savedGame.createdAt).getTime()) / 1000;
 
@@ -285,12 +291,6 @@ export class Game {
 
                 }
             }
-        }
-
-        this.bonusItems = new Map();
-        // Loading bonus
-        for (let bonus of this.getBonusItems()) {
-            this.bonusItems.set(bonus.code, this.stocks.get(bonus.code).stock);
         }
 
         this.flashforward(ffseconds);
